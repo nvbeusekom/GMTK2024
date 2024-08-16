@@ -1,3 +1,5 @@
-[gd_scene format=3 uid="uid://bi4oorb6wfxr8"]
+[gd_scene format=3 uid="uid://chll7dh6eealn"]
 
 [node name="testNode" type="Node2D"]
+
+[node name="testChild" type="Node" parent="."]
