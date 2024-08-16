@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1gpfj6t7ql4e"]
+
+[ext_resource type="PackedScene" uid="uid://byn2ddgkgnwh3" path="res://Scenes/player.tscn" id="1_j32e4"]
+[ext_resource type="PackedScene" uid="uid://37hlcf3u6nug" path="res://Scenes/wall.tscn" id="2_7n00a"]
+[ext_resource type="PackedScene" uid="uid://dd321epjv74vk" path="res://Scenes/seeker.tscn" id="3_wllu7"]
+[ext_resource type="PackedScene" uid="uid://x3p0nrlr8igb" path="res://Scenes/food.tscn" id="4_4vvh3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m3c5u"]
+vertices = PackedVector2Array(1435, 760, 3, 777, 25, 287, 679, 311, 1391, 25, 677, 183, 19, 13, 25, 180)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(25, 287, 3, 777, 1435, 760, 1391, 25, 19, 13, 25, 180, 677, 183, 679, 311)])
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_j32e4")]
+position = Vector2(132, 112)
+
+[node name="Wall" parent="." instance=ExtResource("2_7n00a")]
+position = Vector2(335, 239)
+scale = Vector2(5, 0.5)
+
+[node name="Seeker" parent="." instance=ExtResource("3_wllu7")]
+position = Vector2(699, 459)
+rotation = 2.56389
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_m3c5u")
+
+[node name="Food" parent="." instance=ExtResource("4_4vvh3")]
+position = Vector2(427, 107)
+
+[node name="Food2" parent="." instance=ExtResource("4_4vvh3")]
+position = Vector2(311, 736)
+
+[node name="Food3" parent="." instance=ExtResource("4_4vvh3")]
+position = Vector2(1233, 633)
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+position = Vector2(633, 319)
