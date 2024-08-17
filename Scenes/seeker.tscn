@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd321epjv74vk"]
+[gd_scene load_steps=7 format=3 uid="uid://dd321epjv74vk"]
 
 [ext_resource type="Script" path="res://Scripts/Seeker.gd" id="1_42gxo"]
 [ext_resource type="Texture2D" uid="uid://bvvimr0natwrx" path="res://Assets/Art/Seeker.png" id="2_allre"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_f6hvk"]
 [ext_resource type="Texture2D" uid="uid://c2orpk8hkat85" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_ofeyr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_em3co"]
+radius = 33.0
+height = 76.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wsqu"]
 radius = 22.0
@@ -17,6 +21,12 @@ vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.901961, 0.141176, 0.188235, 0.286275)
 sound_color = Color(0.0941176, 0.223529, 0.729412, 0.286275)
 
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(0, 16)
+shape = SubResource("CapsuleShape2D_em3co")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3wsqu")
@@ -27,6 +37,7 @@ texture = ExtResource("2_allre")
 
 [node name="VisionCone2D" parent="CharacterBody2D" instance=ExtResource("2_f6hvk")]
 position = Vector2(-20, 25)
+recalculate_if_static = false
 
 [node name="Texture light" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
 visible = false
@@ -61,6 +72,7 @@ one_shot = true
 [node name="unreachableWait" type="Timer" parent="CharacterBody2D"]
 one_shot = true
 
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/autopathIdle" to="CharacterBody2D" method="_on_autopath_idle_timeout"]

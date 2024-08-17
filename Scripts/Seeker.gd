@@ -121,3 +121,8 @@ func _on_unreachable_wait_timeout() -> void:
 	playerSeen = false
 	vision_renderer.color = original_color
 	randomPath()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		get_tree().root.get_child(0).game_over();
