@@ -29,29 +29,25 @@ func _process(delta: float) -> void:
 	pass
 
 
-#func pause(node):
-	#for child in node.get_children():
-		#if child.has_method("pause"):
-			#child.pause()
-		#pause(child) 
-		#
-#func unpause(node):
-	#for child in node.get_children():
-		#if child.has_method("unpause"):
-			#child.unpause()
-		#unpause(child) 
+func recursive_pause(node):
+	for child in node.get_children():
+		if child.has_method("pause"):
+			child.pause()
+		recursive_pause(child) 
+		
+func recursive_unpause(node):
+	for child in node.get_children():
+		if child.has_method("unpause"):
+			child.unpause()
+		recursive_unpause(child) 
 
 func pause():
-	for child in get_children():
-		if child.has_method("pause"):
-			child.pause() 
+	recursive_pause(self);
 	pause_node = pauseScreen.instantiate()
 	add_child(pause_node)
 
 func unpause():
-	for child in get_children():
-		if child.has_method("unpause"):
-			child.unpause()
+	recursive_unpause(self);
 	pause_node.queue_free() 
 
 func _input(event):
