@@ -24,7 +24,6 @@ texture = ExtResource("1_id5u0")
 [node name="VisionCone2D" parent="CharacterBody2D" instance=ExtResource("2_f6hvk")]
 position = Vector2(0, 100)
 
-
 [node name="Texture light" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
 visible = false
 energy = 0.7
