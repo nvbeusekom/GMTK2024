@@ -61,6 +61,12 @@ func _input(event):
 
 
 func game_over():
+	if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
+	if get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
+	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
 	print("game over");
 	
 var source_id = 0;
