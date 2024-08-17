@@ -7,15 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dd321epjv74vk" path="res://Scenes/seeker.tscn" id="3_wllu7"]
 [ext_resource type="PackedScene" uid="uid://x3p0nrlr8igb" path="res://Scenes/food.tscn" id="4_4vvh3"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m3c5u"]
-source_geometry_group_name = &"navigation"
-agent_radius = 48.0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ycbl"]
 texture = ExtResource("3_8ixmp")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.00435, -25.9892, 4.99043, -26.0031, 5.00435, -15.9944, -5.01827, -16.0083)
+0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-4.90555, 25.8978, 4.93582, 25.9441, 4.98543, 16.0724, -4.88622, 16.0228)
+0:0/0/physics_layer_0/polygon_2/points = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
 2:0/0 = 0
@@ -64,6 +62,13 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_0ycbl")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m3c5u"]
+vertices = PackedVector2Array(2582.04, 40.9531, 2587.95, 1412.21, 62.3984, 1468.76, 118.609, 29.0391)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(109, 19, 2592, 31, 2598, 1422, 52, 1479)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tdqtp")
 width = 50
@@ -75,15 +80,8 @@ position = Vector2(794.5, 420)
 scale = Vector2(13.8203, 7.51563)
 texture = ExtResource("1_wx2nf")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-78, -35)
-navigation_polygon = SubResource("NavigationPolygon_m3c5u")
-navigation_layers = 3
-
-[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" groups=["navigation"]]
-position = Vector2(78, 35)
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["navigation"]]
 tile_set = SubResource("TileSet_6fvoh")
-navigation_enabled = false
 
 [node name="Player" parent="." instance=ExtResource("1_j32e4")]
 position = Vector2(46, 43)
@@ -91,6 +89,10 @@ position = Vector2(46, 43)
 [node name="Seeker" parent="." instance=ExtResource("3_wllu7")]
 position = Vector2(699, 459)
 rotation = 2.56389
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-78, -35)
+navigation_polygon = SubResource("NavigationPolygon_m3c5u")
 
 [node name="Food" parent="." instance=ExtResource("4_4vvh3")]
 position = Vector2(427, 107)

@@ -1,20 +1,23 @@
 extends Node2D
 
+@export var noise : NoiseTexture2D;
+@export var width = 10;
+@export var height = 10;
+
+@onready var tile_map = $NavigationRegion2D/TileMapLayer
+@onready var navigation_region = $NavigationRegion2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	generate()
+	generate();
+	bake_nav();
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-@export var noise : NoiseTexture2D;
-@export var width = 10;
-@export var height = 10;
 
-@onready var tile_map = $TileMapLayer
 
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
@@ -70,6 +73,13 @@ func get_impossible_neighbours(contains,direction):
 			neighbours.append(key);
 	return neighbours;
 
+func bake_nav():
+	var nav_polygon = NavigationPolygon.new();
+	var bounding_outline = PackedVector2Array([Vector2i(0, 0), Vector2i(0, height*64), Vector2i(width*64, height*64), Vector2i(height*64, 0)]);
+	nav_polygon.add_outline(bounding_outline);
+	navigation_region.navigation_polygon = nav_polygon;
+	navigation_region.bake_navigation_polygon(false);
+	
 func generate():
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
