@@ -112,6 +112,9 @@ func generate():
 		
 		# TODO Better RNG
 		var tyle_type = possibilities[placing].pick_random();
+		if(possibilities[placing].has(empty_atlas) && randf() < 0.7):
+			tyle_type = empty_atlas;
+		
 		
 		if(init):
 			# Place empty
