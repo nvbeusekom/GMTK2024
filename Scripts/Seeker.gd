@@ -20,7 +20,7 @@ var soundHeard = false
 var paused = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var movement_speed = 50.0
+var movement_speed = 80.0
 var movement_delta
 var angle_to_player
 
@@ -40,10 +40,11 @@ func _physics_process(delta):
 			if (global_position - targetPos).length() < 10 and $seenWait.time_left == 0:
 				$seenWait.start()
 				
-			
 	if soundHeard and (global_position - targetPos).length() < 10 and $soundWait.time_left == 0: 
 		$soundWait.start()     
 	
+	if get_tree().get_nodes_in_group("player")[0].score >= get_tree().get_nodes_in_group("player")[0].threshold4:
+		targetPos = global_position + (global_position - get_tree().get_nodes_in_group("player")[0].global_position)
 	$NavigationAgent2D.set_target_position(targetPos)
 	if !$NavigationAgent2D.is_target_reachable() and $unreachableWait.time_left == 0:
 		$unreachableWait.start()
@@ -66,6 +67,10 @@ func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		vision_renderer.color = alert_color
 		playerSeen = true
+		if body.get_node("MusicSafe").playing:
+			body.get_node("MusicSafe").stop()
+		if !body.get_node("MusicChase").playing:
+			body.get_node("MusicChase").play()
 		movement_speed = 150
 		$seenWait.stop()
 	#start pathfinding
@@ -109,6 +114,14 @@ func _on_seen_wait_timeout() -> void:
 	stillFollowing = false
 	movement_speed = 80
 	randomPath()
+	for seeker in get_tree().get_nodes_in_group("seeker"):
+		if seeker.playerSeen:
+			return
+	if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
+	if !get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").play()
+		
 
 func _on_sound_wait_timeout() -> void:
 	soundHeard = false
