@@ -141,6 +141,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if get_tree().get_nodes_in_group("player")[0].score >= get_tree().get_nodes_in_group("player")[0].threshold4:
 			get_tree().get_nodes_in_group("player")[0].get_node("Eating").play()
 			get_tree().get_nodes_in_group("player")[0].score += 5
+			if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
+				get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
+			if !get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").playing:
+				get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").play()
 			queue_free()
 		else:
 			get_tree().root.get_child(0).game_over();
