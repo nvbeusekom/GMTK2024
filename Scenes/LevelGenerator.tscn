@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://7hs21jfctv76"]
+
+[ext_resource type="Script" path="res://Scenes/level_generator.gd" id="1_qu6he"]
+[ext_resource type="Texture2D" uid="uid://cf7d8rxmkai8y" path="res://Assets/Art/tileset.png" id="2_ercpo"]
+
+[sub_resource type="Gradient" id="Gradient_bi5kf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.532189)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7tfjv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rlsah"]
+color_ramp = SubResource("Gradient_bi5kf")
+noise = SubResource("FastNoiseLite_7tfjv")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gclq"]
+texture = ExtResource("2_ercpo")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nxk5s"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_2gclq")
+
+[node name="LevelGenerator" type="Node2D"]
+script = ExtResource("1_qu6he")
+noise = SubResource("NoiseTexture2D_rlsah")
+width = 50
+height = 50
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_nxk5s")

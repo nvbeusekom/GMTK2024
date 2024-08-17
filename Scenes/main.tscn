@@ -88,19 +88,6 @@ navigation_enabled = false
 [node name="Player" parent="." instance=ExtResource("1_j32e4")]
 position = Vector2(46, 43)
 
-[node name="Seeker" parent="." instance=ExtResource("3_wllu7")]
-position = Vector2(699, 459)
-rotation = 2.56389
-
-[node name="Food" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(427, 107)
-
-[node name="Food2" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(311, 736)
-
-[node name="Food3" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(1233, 633)
-
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 visible = false
 position = Vector2(633, 319)
@@ -109,24 +96,3 @@ zoom = Vector2(2.5, 2.5)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0, 0, 0.301961, 1)
-
-[node name="Food4" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(717, 110)
-
-[node name="Food5" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(941, 182)
-
-[node name="Food6" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(1024, 289)
-
-[node name="Food7" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(1137, 420)
-
-[node name="Food8" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(1028, 629)
-
-[node name="Food9" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(711, 688)
-
-[node name="Food10" parent="." instance=ExtResource("4_4vvh3")]
-position = Vector2(505, 712)

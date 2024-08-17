@@ -1,11 +1,20 @@
 extends Node2D
 
+
 @export var noise : NoiseTexture2D;
 @export var width = 10;
 @export var height = 10;
 
 @onready var tile_map = $NavigationRegion2D/TileMapLayer
 @onready var navigation_region = $NavigationRegion2D
+
+var numberOfSeekers = 2
+var numberOfFood = 12
+var numberOfCans = 20
+var food = load("res://Scenes/food.tscn")
+var seeker = load("res://Scenes/seeker.tscn")
+var can = load("res://Scenes/can.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -168,3 +177,31 @@ func generate():
 			for impossible in get_impossible_neighbours(connections[tyle_type].has("down"),"up"):
 				possibilities[down].erase(impossible);
 	
+	#Place food, cans, and seekers
+	var eligibleList = []
+	for cell in $TileMapLayer.get_used_cells_by_id(0,Vector2i(3,2)):
+		eligibleList.append(cell)
+	print(len(eligibleList))
+	if len(eligibleList) > numberOfFood + numberOfCans + numberOfSeekers:
+		for i in range(numberOfFood):
+			print(i)
+			var placeCell = eligibleList.pick_random()
+			eligibleList.remove_at(eligibleList.find(placeCell,0))
+			var scene = food.instantiate()
+			scene.position = $TileMapLayer.map_to_local(placeCell)
+			add_child(scene)
+		for i in range(numberOfCans):
+			var placeCell = eligibleList.pick_random()
+			eligibleList.remove_at(eligibleList.find(placeCell,0))
+			var scene = can.instantiate()
+			scene.position = $TileMapLayer.map_to_local(placeCell)
+			add_child(scene)
+		for i in range(numberOfSeekers):
+			var placeCell = eligibleList.pick_random()
+			eligibleList.remove_at(eligibleList.find(placeCell,0))
+			var scene = seeker.instantiate()
+			scene.position = $TileMapLayer.map_to_local(placeCell)
+			add_child(scene)
+	else:
+		print("Faulty generation")
+		
