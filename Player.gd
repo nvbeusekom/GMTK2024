@@ -78,23 +78,23 @@ func _on_food_touch(amount):
 		SPEED = 90
 		$CollisionShape2D.scale = Vector2(9,9)
 		$AudioStreamPlayer2D.pitch_scale = 0.5
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.6,1.6))
+		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(1.6,1.6))
 		get_tree().root.get_child(0).big_boy_time();
 	elif score >= threshold3:
 		SPEED = 110
 		$CollisionShape2D.scale = Vector2(4.5,4.5)
 		$AudioStreamPlayer2D.pitch_scale = 0.8
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.8,1.8))
+		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(1.8,1.8))
 	elif score >= threshold2:
 		SPEED = 130
 		$CollisionShape2D.scale = Vector2(3,3)
 		$AudioStreamPlayer2D.pitch_scale = 1
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2,2))
+		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(2,2))
 	elif score >= threshold1:
 		SPEED = 160
 		$CollisionShape2D.scale = Vector2(1.7,1.7)
 		$AudioStreamPlayer2D.pitch_scale = 1.5
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2.2,2.2))
+		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(2.2,2.2))
 	
 # It's joever
 func _on_guard_touch():
