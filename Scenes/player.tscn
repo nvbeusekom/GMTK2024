@@ -103,4 +103,6 @@ shape = SubResource("CapsuleShape2D_ygbid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_fls2j")
-animation = &"Idle0"
+animation = &"Walk0"
+frame = 1
+frame_progress = 0.789208
