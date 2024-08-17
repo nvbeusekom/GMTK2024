@@ -26,7 +26,6 @@ func _physics_process(delta):
 	if playerSeen:
 		soundHeard = false
 		targetPos = get_tree().get_nodes_in_group("player")[0].global_position
-		
 	else:
 		rotation = rotation + deg_to_rad(2)#rot_start + sin(Time.get_ticks_msec()/1000. * rotation_speed) * deg_to_rad(rotation_angle/2.)
 			
@@ -34,8 +33,6 @@ func _physics_process(delta):
 		soundHeard = false
 	
 	if playerSeen or soundHeard:
-		
-		
 		$NavigationAgent2D.set_target_position(targetPos)
 		movement_delta = movement_speed * delta
 		var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()

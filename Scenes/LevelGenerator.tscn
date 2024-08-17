@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdx6f3m2uc5c0"]
+[gd_scene load_steps=8 format=3 uid="uid://c8s2y2nxa23x3"]
 
 [ext_resource type="Script" path="res://Scenes/level_generator.gd" id="1_qu6he"]
 [ext_resource type="Texture2D" uid="uid://cf7d8rxmkai8y" path="res://Assets/Art/tileset.png" id="2_ercpo"]
