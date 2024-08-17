@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://brwmx3qt0or4x"]
+
+[node name="pauseScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 366.0
+offset_top = 210.0
+offset_right = 715.0
+offset_bottom = 310.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+text = "Game Paused"
+vertical_alignment = 2
