@@ -2,8 +2,8 @@ extends Node2D
 
 
 @export var noise : NoiseTexture2D;
-@export var width = 10;
-@export var height = 10;
+@export var width = 5;
+@export var height = 5;
 
 @onready var tile_map = $NavigationRegion2D/TileMapLayer
 @onready var navigation_region = $NavigationRegion2D
@@ -123,15 +123,16 @@ func bake_nav():
 func generate():
 	# First place walls around the level
 	tile_map.set_cell(Vector2i(-1,-1),source_id,top_left_wall_atlas);
-	tile_map.set_cell(Vector2i(50,-1),source_id,top_right_wall_atlas);
-	tile_map.set_cell(Vector2i(-1,50),source_id,bot_left_wall_atlas);
-	tile_map.set_cell(Vector2i(50,50),source_id,bot_right_wall_atlas);
+	tile_map.set_cell(Vector2i(width,-1),source_id,top_right_wall_atlas);
+	tile_map.set_cell(Vector2i(-1,height),source_id,bot_left_wall_atlas);
+	tile_map.set_cell(Vector2i(width,height),source_id,bot_right_wall_atlas);
 	
-	for i in range(50):
+	for i in range(height):
 		tile_map.set_cell(Vector2i(-1,i),source_id,left_wall_atlas);
-		tile_map.set_cell(Vector2i(50,i),source_id,right_wall_atlas);
+		tile_map.set_cell(Vector2i(width,i),source_id,right_wall_atlas);
+	for i in range(width):
 		tile_map.set_cell(Vector2i(i,-1),source_id,top_wall_atlas);
-		tile_map.set_cell(Vector2i(i,50),source_id,bot_wall_atlas);
+		tile_map.set_cell(Vector2i(i,height),source_id,bot_wall_atlas);
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
 	var possibilities = {};
