@@ -11,7 +11,7 @@ class_name VisionCone2D
 ## Have this high enough that it is precise, but low enough that it doesn't affect performance
 @export var ray_count = 80
 ## The maximum length of the rays. Basically how far the character can see
-@export var max_distance = 500.
+@export var max_distance = 200.
 
 @export_group("Collisions")
 ## What collision layers will block the vision. Have it set to the same layer as your walls, while avoiding things like items or characters

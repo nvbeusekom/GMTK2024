@@ -128,7 +128,7 @@ shape = SubResource("CapsuleShape2D_ygbid")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_fls2j")
 animation = &"Walk4"
-frame_progress = 0.607358
+frame_progress = 0.158627
 
 [node name="AudioListener2D" type="AudioListener2D" parent="CharacterBody2D"]
 current = true
