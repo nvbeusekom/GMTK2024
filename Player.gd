@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 @export var SPEED = 240
 var score = 0
+var threshold1 = 2
+var threshold2 = 5
+var threshold3 = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimatedSprite2D.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,13 +31,42 @@ func _process(delta):
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
+		look_at(global_position + velocity)
+		rotation = rotation + deg_to_rad(90)
+		if score >= threshold3:
+			$AnimatedSprite2D.animation = "Walk3"
+		elif score >= threshold2:
+			$AnimatedSprite2D.animation = "Walk2"
+		elif score >= threshold1:
+			$AnimatedSprite2D.animation = "Walk1"
+		else:
+			$AnimatedSprite2D.animation = "Walk0"
+	else:
+		if score >= threshold3:
+			$AnimatedSprite2D.animation = "Idle3"
+		elif score >= threshold2:
+			$AnimatedSprite2D.animation = "Idle2"
+		elif score >= threshold1:
+			$AnimatedSprite2D.animation = "Idle1"
+		else:
+			$AnimatedSprite2D.animation = "Idle0"
+	
+	get_tree().get_nodes_in_group("camera")[0].position = global_position
 	
 	move_and_slide()
 	
 func _on_food_touch(amount):
-	print("Food touched")
 	score += amount
-	scale.x += .5
-	scale.y += .5
-	get_tree().get_nodes_in_group("camera")[0].set_zoom(get_tree().get_nodes_in_group("camera")[0].get_zoom() * Vector2(.9,.9))
+	if score >= threshold3:
+		$CollisionShape2D.scale = Vector2(5,5)
+		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1,1))
+	elif score >= threshold2:
+		$CollisionShape2D.scale = Vector2(3,3)
+		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.5,1.5))
+	elif score >= threshold1:
+		$CollisionShape2D.scale = Vector2(1.7,1.7)
+		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2,2))
+	#scale.x += .5
+	#scale.y += .5
+	#get_tree().get_nodes_in_group("camera")[0].set_zoom(get_tree().get_nodes_in_group("camera")[0].get_zoom() * Vector2(.98,.98))
 	

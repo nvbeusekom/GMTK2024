@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dd321epjv74vk"]
 
 [ext_resource type="Script" path="res://Scripts/Seeker.gd" id="1_42gxo"]
-[ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_id5u0"]
+[ext_resource type="Texture2D" uid="uid://bvvimr0natwrx" path="res://Assets/Art/Seeker.png" id="2_allre"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_f6hvk"]
 [ext_resource type="Texture2D" uid="uid://c2orpk8hkat85" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_ofeyr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpwm3"]
-size = Vector2(132, 132)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wsqu"]
+radius = 16.0
+height = 54.0
 
 [node name="Seeker" type="Node2D"]
 
@@ -16,13 +17,15 @@ vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.901961, 0.141176, 0.188235, 0.286275)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_bpwm3")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3wsqu")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("1_id5u0")
+rotation = 3.14159
+texture = ExtResource("2_allre")
 
 [node name="VisionCone2D" parent="CharacterBody2D" instance=ExtResource("2_f6hvk")]
-position = Vector2(0, 100)
+position = Vector2(-20, 25)
 
 [node name="Texture light" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
 visible = false

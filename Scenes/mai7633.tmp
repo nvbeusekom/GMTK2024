@@ -45,7 +45,7 @@ position = Vector2(1233, 633)
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 visible = false
 position = Vector2(633, 319)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
