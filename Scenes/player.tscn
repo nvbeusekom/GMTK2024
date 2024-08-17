@@ -123,12 +123,14 @@ animations = [{
 script = ExtResource("1_hvitj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_ygbid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_fls2j")
-animation = &"Walk0"
-frame_progress = 0.844033
+animation = &"Walk3"
+frame = 1
+frame_progress = 0.918904
 
 [node name="AudioListener2D" type="AudioListener2D" parent="CharacterBody2D"]
 current = true
