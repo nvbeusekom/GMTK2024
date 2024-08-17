@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://byn2ddgkgnwh3"]
+[gd_scene load_steps=18 format=3 uid="uid://byn2ddgkgnwh3"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hvitj"]
 [ext_resource type="Texture2D" uid="uid://cdibewqloqgq6" path="res://Assets/Art/Playerfirstsize1.png" id="2_7atnp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://6f3lsowlgbnf" path="res://Assets/Art/Playerfifthsize2.png" id="11_1pyto"]
 [ext_resource type="AudioStream" uid="uid://b8nb5qfkqje8o" path="res://Assets/Sound&Music/notdetected.wav" id="11_q4bvd"]
 [ext_resource type="AudioStream" uid="uid://df2ponuv6s7et" path="res://Assets/Sound&Music/caught.wav" id="12_wveai"]
+[ext_resource type="AudioStream" uid="uid://onx070wfmtn7" path="res://Assets/Sound&Music/eating.wav" id="15_870s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygbid"]
 radius = 2.0
@@ -126,6 +127,7 @@ script = ExtResource("1_hvitj")
 shape = SubResource("CapsuleShape2D_ygbid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_fls2j")
 animation = &"Walk3"
 frame = 1
@@ -144,3 +146,6 @@ stream = ExtResource("11_q4bvd")
 
 [node name="MusicChase" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("12_wveai")
+
+[node name="Eating" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("15_870s1")
