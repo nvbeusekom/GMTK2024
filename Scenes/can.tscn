@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cnysg2ytigpmj"]
 
 [ext_resource type="Texture2D" uid="uid://dxww2lteo0rc7" path="res://Assets/Art/Can1.png" id="1_pg8wi"]
-[ext_resource type="Script" path="res://Scenes/can.gd" id="1_styvo"]
+[ext_resource type="Script" path="res://Scripts/can.gd" id="1_styvo"]
 [ext_resource type="Texture2D" uid="uid://dtqrns3axxslx" path="res://Assets/Art/Can2.png" id="2_u7453"]
 [ext_resource type="Texture2D" uid="uid://wv1jvamnkcmh" path="res://Assets/Art/Can3.png" id="3_bbxkb"]
 [ext_resource type="Texture2D" uid="uid://cw8iwvj1ko7ys" path="res://Assets/Art/Can4.png" id="4_1kqgm"]

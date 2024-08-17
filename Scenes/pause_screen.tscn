@@ -1,23 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://brwmx3qt0or4x"]
+[gd_scene load_steps=4 format=3 uid="uid://brwmx3qt0or4x"]
 
 [ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="1_rk3vk"]
+[ext_resource type="Script" path="res://Scripts/pause_screen.gd" id="1_vgvnp"]
+[ext_resource type="Theme" uid="uid://s00swvrkfkxc" path="res://Themes/PauseButton.tres" id="3_6g4r1"]
 
 [node name="pauseScreen" type="Node2D"]
+script = ExtResource("1_vgvnp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1933.0
-offset_bottom = 1094.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 691.0
-offset_top = 300.0
-offset_right = 1217.0
-offset_bottom = 445.0
+offset_top = 183.0
+offset_right = 1920.0
+offset_bottom = 376.0
 theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
 theme_override_fonts/font = ExtResource("1_rk3vk")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 160
 text = "Game Paused"
+horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 799.0
+offset_top = 452.0
+offset_right = 1124.0
+offset_bottom = 581.0
+theme = ExtResource("3_6g4r1")
+theme_override_font_sizes/font_size = 72
+text = "Continue"
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 799.0
+offset_top = 589.0
+offset_right = 1124.0
+offset_bottom = 718.0
+theme = ExtResource("3_6g4r1")
+theme_override_font_sizes/font_size = 72
+text = "Restart"
+
+[node name="Button3" type="Button" parent="CanvasLayer"]
+offset_left = 799.0
+offset_top = 742.0
+offset_right = 1124.0
+offset_bottom = 871.0
+theme = ExtResource("3_6g4r1")
+theme_override_font_sizes/font_size = 72
+text = "Quit :("
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_quit_pressed"]

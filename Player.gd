@@ -94,3 +94,6 @@ func _on_food_touch(amount):
 	#scale.y += .5
 	#get_tree().get_nodes_in_group("camera")[0].set_zoom(get_tree().get_nodes_in_group("camera")[0].get_zoom() * Vector2(.98,.98))
 	
+# It's joever
+func _on_guard_touch():
+	get_tree().root.get_child(0).game_over();

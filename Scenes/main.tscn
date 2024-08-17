@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b1gpfj6t7ql4e"]
 
 [ext_resource type="PackedScene" uid="uid://byn2ddgkgnwh3" path="res://Scenes/player.tscn" id="1_j32e4"]
-[ext_resource type="Script" path="res://Scenes/level_gen.gd" id="1_tdqtp"]
+[ext_resource type="Script" path="res://Scripts/level_gen.gd" id="1_tdqtp"]
 [ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_wx2nf"]
 [ext_resource type="Texture2D" uid="uid://cf7d8rxmkai8y" path="res://Assets/Art/tileset.png" id="3_8ixmp"]
 [ext_resource type="PackedScene" uid="uid://dd321epjv74vk" path="res://Scenes/seeker.tscn" id="3_wllu7"]
@@ -82,8 +82,8 @@ sources/0 = SubResource("TileSetAtlasSource_0ycbl")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tdqtp")
-width = 20
-height = 20
+width = 50
+height = 50
 
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
