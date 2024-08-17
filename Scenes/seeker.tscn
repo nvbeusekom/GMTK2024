@@ -15,6 +15,7 @@ height = 64.0
 script = ExtResource("1_42gxo")
 vision_renderer = NodePath("VisionCone2D/VisionConeRenderer")
 alert_color = Color(0.901961, 0.141176, 0.188235, 0.286275)
+sound_color = Color(0.0941176, 0.223529, 0.729412, 0.286275)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 rotation = 1.5708
@@ -45,7 +46,22 @@ texture_scale = 2.0
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
 debug_enabled = true
 
+[node name="autopathIdle" type="Timer" parent="CharacterBody2D"]
+wait_time = 10.0
+autostart = true
+
+[node name="soundWait" type="Timer" parent="CharacterBody2D"]
+wait_time = 3.0
+one_shot = true
+
+[node name="seenWait" type="Timer" parent="CharacterBody2D"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_exited"]
+[connection signal="timeout" from="CharacterBody2D/autopathIdle" to="CharacterBody2D" method="_on_autopath_idle_timeout"]
+[connection signal="timeout" from="CharacterBody2D/soundWait" to="CharacterBody2D" method="_on_sound_wait_timeout"]
+[connection signal="timeout" from="CharacterBody2D/seenWait" to="CharacterBody2D" method="_on_seen_wait_timeout"]
 
 [editable path="CharacterBody2D/VisionCone2D"]

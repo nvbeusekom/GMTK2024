@@ -10,7 +10,7 @@ extends Node2D
 
 var numberOfSeekers = 2
 var numberOfFood = 12
-var numberOfCans = 20
+var numberOfCans = 200
 var food = load("res://Scenes/food.tscn")
 var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")
@@ -223,10 +223,8 @@ func generate():
 	var eligibleList = []
 	for cell in tile_map.get_used_cells_by_id(0,Vector2i(3,2)):
 		eligibleList.append(cell)
-	print(len(eligibleList))
 	if len(eligibleList) > numberOfFood + numberOfCans + numberOfSeekers:
 		for i in range(numberOfFood):
-			print(i)
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = food.instantiate()
@@ -245,5 +243,5 @@ func generate():
 			scene.position = tile_map.map_to_local(placeCell)
 			add_child(scene)
 	else:
-		print("Faulty generation")
+		print("Faulty generation, too few empty tiles")
 		

@@ -66,12 +66,15 @@ func _process(delta):
 func _on_food_touch(amount):
 	score += amount
 	if score >= threshold3:
+		SPEED = 110
 		$CollisionShape2D.scale = Vector2(5,5)
 		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1,1))
 	elif score >= threshold2:
+		SPEED = 130
 		$CollisionShape2D.scale = Vector2(3,3)
 		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.5,1.5))
 	elif score >= threshold1:
+		SPEED = 160
 		$CollisionShape2D.scale = Vector2(1.7,1.7)
 		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2,2))
 	#scale.x += .5
