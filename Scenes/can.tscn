@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnysg2ytigpmj"]
+[gd_scene load_steps=16 format=3 uid="uid://cnysg2ytigpmj"]
 
 [ext_resource type="Texture2D" uid="uid://dxww2lteo0rc7" path="res://Assets/Art/Can1.png" id="1_pg8wi"]
 [ext_resource type="Script" path="res://Scenes/can.gd" id="1_styvo"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d4eb60pkj8v58" path="res://Assets/Art/Can8.png" id="8_ttfmo"]
 [ext_resource type="Texture2D" uid="uid://cphgcio84jejv" path="res://Assets/Art/Can9.png" id="9_t2ata"]
 [ext_resource type="Texture2D" uid="uid://c3swl7u8q2pmy" path="res://Assets/Art/Can10.png" id="10_vwnap"]
+[ext_resource type="AudioStream" uid="uid://cnah0a22i31i8" path="res://Assets/Sound&Music/can.wav" id="12_k7c67"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kg57m"]
 animations = [{
@@ -75,4 +76,8 @@ shape = SubResource("CircleShape2D_j76mn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_g46fq")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_k7c67")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

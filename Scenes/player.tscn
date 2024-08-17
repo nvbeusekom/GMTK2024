@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://byn2ddgkgnwh3"]
+[gd_scene load_steps=13 format=3 uid="uid://byn2ddgkgnwh3"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hvitj"]
 [ext_resource type="Texture2D" uid="uid://cdibewqloqgq6" path="res://Assets/Art/Playerfirstsize1.png" id="2_7atnp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgbiaeoawung8" path="res://Assets/Art/Playersecondsize2.png" id="7_coffj"]
 [ext_resource type="Texture2D" uid="uid://cjno7lqjqf6it" path="res://Assets/Art/Playerthirdsize2.png" id="8_43xs4"]
 [ext_resource type="Texture2D" uid="uid://c24ib0p8cjsco" path="res://Assets/Art/Playerfourthsize2.png" id="9_ua8mn"]
+[ext_resource type="AudioStream" uid="uid://dqn5ab08iah1x" path="res://Assets/Sound&Music/walking2.wav" id="10_2kmkh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygbid"]
 radius = 2.0
@@ -90,7 +91,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk3",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Player" type="Node2D"]
@@ -103,6 +104,11 @@ shape = SubResource("CapsuleShape2D_ygbid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_fls2j")
-animation = &"Walk0"
-frame = 1
-frame_progress = 0.789208
+animation = &"Walk3"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="CharacterBody2D"]
+current = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("10_2kmkh")
+volume_db = -20.0

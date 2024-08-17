@@ -58,10 +58,14 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="unreachableWait" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
 [connection signal="body_entered" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/autopathIdle" to="CharacterBody2D" method="_on_autopath_idle_timeout"]
 [connection signal="timeout" from="CharacterBody2D/soundWait" to="CharacterBody2D" method="_on_sound_wait_timeout"]
 [connection signal="timeout" from="CharacterBody2D/seenWait" to="CharacterBody2D" method="_on_seen_wait_timeout"]
+[connection signal="timeout" from="CharacterBody2D/unreachableWait" to="CharacterBody2D" method="_on_unreachable_wait_timeout"]
 
 [editable path="CharacterBody2D/VisionCone2D"]

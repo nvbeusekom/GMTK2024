@@ -10,7 +10,7 @@ extends Node2D
 
 var numberOfSeekers = 2
 var numberOfFood = 12
-var numberOfCans = 200
+var numberOfCans = 50
 var food = load("res://Scenes/food.tscn")
 var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")

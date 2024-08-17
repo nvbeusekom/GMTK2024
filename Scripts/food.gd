@@ -14,5 +14,7 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.has_method("_on_food_touch"):
 		body._on_food_touch(1)
-		queue_free()
+		$AudioStreamPlayer2D.play()
+		$Sprite2D.queue_free()
+		$Area2D.queue_free()
 	

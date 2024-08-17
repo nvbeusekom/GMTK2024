@@ -38,6 +38,8 @@ func _process(delta):
 			seeker._on_sound_heard(global_position)
 	
 	if velocity.length() > 0:
+		if !$AudioStreamPlayer2D.playing:
+			$AudioStreamPlayer2D.play()
 		velocity = velocity.normalized() * SPEED
 		look_at(global_position + velocity)
 		rotation = rotation + deg_to_rad(90)
@@ -50,6 +52,7 @@ func _process(delta):
 		else:
 			$AnimatedSprite2D.animation = "Walk0"
 	else:
+		$AudioStreamPlayer2D.stop()
 		if score >= threshold3:
 			$AnimatedSprite2D.animation = "Idle3"
 		elif score >= threshold2:
@@ -68,15 +71,15 @@ func _on_food_touch(amount):
 	if score >= threshold3:
 		SPEED = 110
 		$CollisionShape2D.scale = Vector2(5,5)
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1,1))
+		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.8,1.8))
 	elif score >= threshold2:
 		SPEED = 130
 		$CollisionShape2D.scale = Vector2(3,3)
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.5,1.5))
+		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2,2))
 	elif score >= threshold1:
 		SPEED = 160
 		$CollisionShape2D.scale = Vector2(1.7,1.7)
-		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2,2))
+		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2.2,2.2))
 	#scale.x += .5
 	#scale.y += .5
 	#get_tree().get_nodes_in_group("camera")[0].set_zoom(get_tree().get_nodes_in_group("camera")[0].get_zoom() * Vector2(.98,.98))

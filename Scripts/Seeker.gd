@@ -9,6 +9,8 @@ extends CharacterBody2D
 
 @onready var rot_start = rotation
 @onready var original_color = vision_renderer.color if vision_renderer else Color.WHITE
+
+var rng = RandomNumberGenerator.new()
 var goal
 var targetPos = Vector2(0,0)
 var lastKnownPos = Vector2(0,0)
@@ -43,11 +45,8 @@ func _physics_process(delta):
 		$soundWait.start()     
 	
 	$NavigationAgent2D.set_target_position(targetPos)
-	if !$NavigationAgent2D.is_target_reachable():
-		soundHeard = false
-		playerSeen = false
-		vision_renderer.color = original_color
-		randomPath()
+	if !$NavigationAgent2D.is_target_reachable() and $unreachableWait.time_left == 0:
+		$unreachableWait.start()
 	movement_delta = movement_speed * delta
 	var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()
 	var current_agent_position: Vector2 = global_position
@@ -67,7 +66,7 @@ func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		vision_renderer.color = alert_color
 		playerSeen = true
-		movement_speed = 120
+		movement_speed = 150
 		$seenWait.stop()
 	#start pathfinding
 	
@@ -82,7 +81,7 @@ func _on_sound_heard(soundOrigin: Vector2) -> void:
 		$soundWait.stop()
 		vision_renderer.color = sound_color
 		soundHeard = true
-		movement_speed = 80
+		movement_speed = 110
 		targetPos = soundOrigin
 		$NavigationAgent2D.set_target_position(targetPos)
 		if !$NavigationAgent2D.is_target_reachable():
@@ -94,18 +93,31 @@ func _on_autopath_idle_timeout() -> void:
 func randomPath():
 	if !playerSeen and !soundHeard:
 		var eligibleList = []
+		var tpList = []
 		for cell in get_tree().get_nodes_in_group("navigation")[0].get_used_cells_by_id(0,Vector2i(3,2)):
+			if (get_tree().get_nodes_in_group("navigation")[0].map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].global_position).length() > 500:
+				tpList.append(cell)
 			eligibleList.append(cell)
-			targetPos = get_tree().get_nodes_in_group("navigation")[0].map_to_local(eligibleList.pick_random())
+		if (get_tree().get_nodes_in_group("player")[0].global_position - global_position).length() > 500 and (get_tree().get_nodes_in_group("player")[0].global_position - global_position).length() < 800: # and rng.randf_range(0,10) > 5
+			global_position = get_tree().get_nodes_in_group("navigation")[0].map_to_local(tpList.pick_random())
+			print("teleport")
+		targetPos = get_tree().get_nodes_in_group("navigation")[0].map_to_local(eligibleList.pick_random())
 			
 func _on_seen_wait_timeout() -> void:
 	vision_renderer.color = original_color
 	playerSeen = false
 	stillFollowing = false
-	movement_speed = 50
+	movement_speed = 80
 	randomPath()
 
 func _on_sound_wait_timeout() -> void:
 	soundHeard = false
-	movement_speed = 50
+	movement_speed = 80
+	randomPath()
+
+
+func _on_unreachable_wait_timeout() -> void:
+	soundHeard = false
+	playerSeen = false
+	vision_renderer.color = original_color
 	randomPath()
