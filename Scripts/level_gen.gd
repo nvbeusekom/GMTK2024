@@ -7,8 +7,9 @@ extends Node2D
 
 @onready var tile_map = $NavigationRegion2D/TileMapLayer
 @onready var navigation_region = $NavigationRegion2D
+@onready var player = $Player
 
-var numberOfSeekers = 6
+var numberOfSeekers = 4
 var numberOfFood = 30
 var numberOfCans = 50
 var food = load("res://Scenes/food.tscn")
@@ -82,7 +83,10 @@ var horizontal_gap1_atlas = Vector2i(7,1);
 var vertical_gap1_atlas = Vector2i(0,2);
 var horizontal_gap2_atlas = Vector2i(1,2);
 var vertical_gap2_atlas = Vector2i(2,2);
+var horizontal_gap3_atlas = Vector2i(0,4);
+var vertical_gap3_atlas = Vector2i(1,4);
 var empty_atlas = Vector2i(3,2);
+
 
 var top_left_wall_atlas = Vector2i(4,3);
 var top_right_wall_atlas = Vector2i(5,3);
@@ -92,7 +96,7 @@ var top_wall_atlas = Vector2i(6,2);
 var bot_wall_atlas = Vector2i(4,2);
 var left_wall_atlas = Vector2i(5,2);
 var right_wall_atlas = Vector2i(7,2);
-
+var full_wall = Vector2i(2,4);
 
 var connections = {
 	horizontal_atlas: ["left","right"],
@@ -114,6 +118,8 @@ var connections = {
 	vertical_gap1_atlas: ["up","down"],
 	horizontal_gap2_atlas: ["left","right"],
 	vertical_gap2_atlas: ["up","down"],
+	horizontal_gap3_atlas: ["left","right"],
+	vertical_gap3_atlas: ["up","down"],
 	empty_atlas: []
 }
 
@@ -169,6 +175,8 @@ func generate():
 											vertical_gap1_atlas,
 											horizontal_gap2_atlas,
 											vertical_gap2_atlas,
+											horizontal_gap3_atlas,
+											vertical_gap3_atlas,
 											empty_atlas];
 	
 	
