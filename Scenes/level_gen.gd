@@ -14,6 +14,8 @@ var numberOfCans = 20
 var food = load("res://Scenes/food.tscn")
 var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")
+var pause_node = null
+var pauseScreen = load("res://Scenes/pauseScreen.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +28,27 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func pause(node):
+	for child in node.get_children():
+		if child.has_method("pause"):
+			child.pause()
+		pause(child) 
+		
+func unpause(node):
+	for child in node.get_children():
+		if child.has_method("unpause"):
+			child.unpause()
+		unpause(child) 
+
+func _input(event):
+	if Input.is_action_pressed("pause"):
+		if pause_node == null:
+			pause(self)
+			pause_node = pauseScreen.instantiate()
+			add_child(pause_node)
+		else:
+			unpause(self)
+			pause_node.queue_free()
 
 
 var source_id = 0;

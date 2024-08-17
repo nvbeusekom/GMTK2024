@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene format=3 uid="uid://brwmx3qt0or4x"]
+=======
+[gd_scene format=3 uid="uid://br13u1catffky"]
+>>>>>>> Stashed changes
 
 [node name="pauseScreen" type="Node2D"]
 
