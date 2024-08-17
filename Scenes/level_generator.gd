@@ -16,4 +16,17 @@ func _process(delta: float) -> void:
 
 
 func generate():
-	pass
+	var lowest_value = 0;
+	var lowest_x = 0;
+	var lowest_y = 0;
+	
+	# Place first tile as empty 
+	
+	for x in range(width):
+		for y in range(height):
+			if(lowest_value == 0):
+				# Place empty
+				pass
+			else:
+				pass
+				# Place any of remaining
