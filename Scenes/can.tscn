@@ -1,0 +1,78 @@
+[gd_scene load_steps=15 format=3 uid="uid://cnysg2ytigpmj"]
+
+[ext_resource type="Texture2D" uid="uid://dxww2lteo0rc7" path="res://Assets/Art/Can1.png" id="1_pg8wi"]
+[ext_resource type="Script" path="res://Scenes/can.gd" id="1_styvo"]
+[ext_resource type="Texture2D" uid="uid://dtqrns3axxslx" path="res://Assets/Art/Can2.png" id="2_u7453"]
+[ext_resource type="Texture2D" uid="uid://wv1jvamnkcmh" path="res://Assets/Art/Can3.png" id="3_bbxkb"]
+[ext_resource type="Texture2D" uid="uid://cw8iwvj1ko7ys" path="res://Assets/Art/Can4.png" id="4_1kqgm"]
+[ext_resource type="Texture2D" uid="uid://dqsf6l2ya0uoj" path="res://Assets/Art/Can5.png" id="5_i76sq"]
+[ext_resource type="Texture2D" uid="uid://48awcxm3jdvq" path="res://Assets/Art/Can6.png" id="6_nh6q8"]
+[ext_resource type="Texture2D" uid="uid://snq1baa1rrlq" path="res://Assets/Art/Can7.png" id="7_dskm5"]
+[ext_resource type="Texture2D" uid="uid://d4eb60pkj8v58" path="res://Assets/Art/Can8.png" id="8_ttfmo"]
+[ext_resource type="Texture2D" uid="uid://cphgcio84jejv" path="res://Assets/Art/Can9.png" id="9_t2ata"]
+[ext_resource type="Texture2D" uid="uid://c3swl7u8q2pmy" path="res://Assets/Art/Can10.png" id="10_vwnap"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kg57m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pg8wi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_u7453")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bbxkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1kqgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i76sq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nh6q8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dskm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ttfmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_t2ata")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vwnap")
+}],
+"loop": false,
+"name": &"Tip over",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j76mn"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g46fq"]
+radius = 15.0
+
+[node name="can" type="Node2D"]
+script = ExtResource("1_styvo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kg57m")
+animation = &"Tip over"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_j76mn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_g46fq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
