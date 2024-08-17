@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd321epjv74vk"]
+[gd_scene load_steps=6 format=3 uid="uid://dd321epjv74vk"]
 
-[ext_resource type="Script" path="res://Scenes/Seeker.gd" id="1_42gxo"]
+[ext_resource type="Script" path="res://Scripts/Seeker.gd" id="1_42gxo"]
 [ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_id5u0"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_f6hvk"]
+[ext_resource type="Texture2D" uid="uid://c2orpk8hkat85" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_ofeyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bpwm3"]
 size = Vector2(132, 132)
@@ -22,6 +23,22 @@ texture = ExtResource("1_id5u0")
 
 [node name="VisionCone2D" parent="CharacterBody2D" instance=ExtResource("2_f6hvk")]
 position = Vector2(0, 100)
+
+
+[node name="Texture light" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
+visible = false
+energy = 0.7
+texture = ExtResource("4_ofeyr")
+texture_scale = 4.0
+
+[node name="Shadow" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
+visible = false
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = ExtResource("4_ofeyr")
+texture_scale = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
 debug_enabled = true

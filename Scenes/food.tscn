@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://x3p0nrlr8igb"]
 
 [ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_jukg3"]
-[ext_resource type="Script" path="res://Scenes/food.gd" id="1_tt1p6"]
+[ext_resource type="Script" path="res://Scripts/food.gd" id="1_tt1p6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2hqj"]
 size = Vector2(128, 128)

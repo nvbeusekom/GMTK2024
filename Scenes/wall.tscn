@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://37hlcf3u6nug"]
+[gd_scene load_steps=5 format=3 uid="uid://37hlcf3u6nug"]
 
 [ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_bor2k"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dr2ul"]
+polygon = PackedVector2Array(-63, 61, 62, 60, 61, -62, -62, -63)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sriee"]
 
@@ -11,6 +14,9 @@ size = Vector2(128, 127)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bor2k")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_dr2ul")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
