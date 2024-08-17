@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1gpfj6t7ql4e"]
+[gd_scene load_steps=10 format=3 uid="uid://b1gpfj6t7ql4e"]
 
 [ext_resource type="PackedScene" uid="uid://byn2ddgkgnwh3" path="res://Scenes/player.tscn" id="1_j32e4"]
+[ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_wx2nf"]
 [ext_resource type="PackedScene" uid="uid://37hlcf3u6nug" path="res://Scenes/wall.tscn" id="2_7n00a"]
 [ext_resource type="PackedScene" uid="uid://dd321epjv74vk" path="res://Scenes/seeker.tscn" id="3_wllu7"]
 [ext_resource type="PackedScene" uid="uid://x3p0nrlr8igb" path="res://Scenes/food.tscn" id="4_4vvh3"]
@@ -10,7 +11,25 @@ vertices = PackedVector2Array(1435, 760, 3, 777, 25, 287, 679, 311, 1391, 25, 67
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(25, 287, 3, 777, 1435, 760, 1391, 25, 19, 13, 25, 180, 677, 183, 679, 311)])
 
+[sub_resource type="Gradient" id="Gradient_v1kis"]
+offsets = PackedFloat32Array(0, 0.559702, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.141791, 0.141791, 0.141791, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4c72q"]
+gradient = SubResource("Gradient_v1kis")
+
+[sub_resource type="Environment" id="Environment_44yj3"]
+background_mode = 3
+background_canvas_max_layer = 3
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture2D_4c72q")
+
 [node name="Main" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(794.5, 420)
+scale = Vector2(13.8203, 7.51563)
+texture = ExtResource("1_wx2nf")
 
 [node name="Player" parent="." instance=ExtResource("1_j32e4")]
 position = Vector2(132, 112)
@@ -37,3 +56,9 @@ position = Vector2(1233, 633)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2(633, 319)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0.301961, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_44yj3")

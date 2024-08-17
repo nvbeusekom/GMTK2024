@@ -12,6 +12,7 @@ size = Vector2(132, 131)
 script = ExtResource("1_hvitj")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+light_mask = 3
 texture = ExtResource("2_hd0eu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
