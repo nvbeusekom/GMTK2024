@@ -121,18 +121,19 @@ func bake_nav():
 	navigation_region.bake_navigation_polygon(false);
 	
 func generate():
-	# First place walls around the level
+	# First place walls around the level and remove connections to the wall
 	tile_map.set_cell(Vector2i(-1,-1),source_id,top_left_wall_atlas);
 	tile_map.set_cell(Vector2i(width,-1),source_id,top_right_wall_atlas);
 	tile_map.set_cell(Vector2i(-1,height),source_id,bot_left_wall_atlas);
 	tile_map.set_cell(Vector2i(width,height),source_id,bot_right_wall_atlas);
 	
-	for i in range(height):
-		tile_map.set_cell(Vector2i(-1,i),source_id,left_wall_atlas);
-		tile_map.set_cell(Vector2i(width,i),source_id,right_wall_atlas);
 	for i in range(width):
 		tile_map.set_cell(Vector2i(i,-1),source_id,top_wall_atlas);
 		tile_map.set_cell(Vector2i(i,height),source_id,bot_wall_atlas);
+	for i in range(height):
+		tile_map.set_cell(Vector2i(-1,i),source_id,left_wall_atlas);
+		tile_map.set_cell(Vector2i(width,i),source_id,right_wall_atlas);
+	
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
 	var possibilities = {};
@@ -158,6 +159,18 @@ func generate():
 											horizontal_gap2_atlas,
 											vertical_gap2_atlas,
 											empty_atlas];
+	
+	
+	for i in range(width):
+		for tile in get_impossible_neighbours(false,"up"):
+			possibilities[Vector2i(i,0)].erase(tile);
+		for tile in get_impossible_neighbours(false,"down"):
+			possibilities[Vector2i(i,height-1)].erase(tile);
+	for i in range(width):
+		for tile in get_impossible_neighbours(false,"left"):
+			possibilities[Vector2i(0,i)].erase(tile);
+		for tile in get_impossible_neighbours(false,"right"):
+			possibilities[Vector2i(width-1,i)].erase(tile);
 	
 	# Make array of cells that are on the edge for efficiency
 	var cells_on_edge = [Vector2i(0,0)];
