@@ -8,7 +8,7 @@
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m3c5u"]
 source_geometry_group_name = &"navigation"
-agent_radius = 48.0
+agent_radius = 64.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ycbl"]
 texture = ExtResource("3_8ixmp")
@@ -78,11 +78,11 @@ texture_region_size = Vector2i(64, 64)
 2:3/0 = 0
 3:3/0 = 0
 0:4/0 = 0
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 16, -16, 16, -16, -16, -32, -16)
-0:4/0/physics_layer_0/polygon_1/points = PackedVector2Array(16, 16, 16, -16, 32, -16, 32, 16)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 16, -10, 16, -10, -16, -32, -16)
+0:4/0/physics_layer_0/polygon_1/points = PackedVector2Array(10, 16, 10, -16, 32, -16, 32, 16)
 1:4/0 = 0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 32, -16, 16, 16, 16, 16, 32)
-1:4/0/physics_layer_0/polygon_1/points = PackedVector2Array(-16, -16, -16, -32, 16, -32, 16, -16)
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 32, -16, 10, 16, 10, 16, 32)
+1:4/0/physics_layer_0/polygon_1/points = PackedVector2Array(-16, -10, -16, -32, 16, -32, 16.5, -10)
 2:4/0 = 0
 3:4/0 = 0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
