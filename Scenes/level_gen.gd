@@ -73,6 +73,14 @@ var horizontal_gap2_atlas = Vector2i(1,2);
 var vertical_gap2_atlas = Vector2i(2,2);
 var empty_atlas = Vector2i(3,2);
 
+var top_left_wall_atlas = Vector2i(4,3);
+var top_right_wall_atlas = Vector2i(5,3);
+var bot_left_wall_atlas = Vector2i(6,3);
+var bot_right_wall_atlas = Vector2i(7,3);
+var top_wall_atlas = Vector2i(6,2);
+var bot_wall_atlas = Vector2i(4,2);
+var left_wall_atlas = Vector2i(5,2);
+var right_wall_atlas = Vector2i(7,2);
 
 
 var connections = {
@@ -113,6 +121,17 @@ func bake_nav():
 	navigation_region.bake_navigation_polygon(false);
 	
 func generate():
+	# First place walls around the level
+	tile_map.set_cell(Vector2i(-1,-1),source_id,top_left_wall_atlas);
+	tile_map.set_cell(Vector2i(50,-1),source_id,top_right_wall_atlas);
+	tile_map.set_cell(Vector2i(-1,50),source_id,bot_left_wall_atlas);
+	tile_map.set_cell(Vector2i(50,50),source_id,bot_right_wall_atlas);
+	
+	for i in range(50):
+		tile_map.set_cell(Vector2i(-1,i),source_id,left_wall_atlas);
+		tile_map.set_cell(Vector2i(50,i),source_id,right_wall_atlas);
+		tile_map.set_cell(Vector2i(i,-1),source_id,top_wall_atlas);
+		tile_map.set_cell(Vector2i(i,50),source_id,bot_wall_atlas);
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
 	var possibilities = {};
