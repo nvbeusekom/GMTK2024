@@ -15,6 +15,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			look_at(body.global_position)
 			rotation = rotation - deg_to_rad(90)
 			$AnimatedSprite2D.play()
+			$StaticBody2D.queue_free()
 			tippedOver = true
 			
 

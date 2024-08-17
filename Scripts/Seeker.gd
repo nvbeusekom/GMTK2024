@@ -43,8 +43,8 @@ func _physics_process(delta):
 	if soundHeard and (global_position - targetPos).length() < 10 and $soundWait.time_left == 0: 
 		$soundWait.start()     
 	
-	if get_tree().get_nodes_in_group("player")[0].score >= get_tree().get_nodes_in_group("player")[0].threshold4 and (global_position - get_tree().get_nodes_in_group("player")[0].global_position).length() < 450:
-		targetPos = global_position + (global_position - get_tree().get_nodes_in_group("player")[0].global_position).normalized()
+	#if get_tree().get_nodes_in_group("player")[0].score >= get_tree().get_nodes_in_group("player")[0].threshold4 and (global_position - get_tree().get_nodes_in_group("player")[0].global_position).length() < 450:
+		#targetPos = global_position + (global_position - get_tree().get_nodes_in_group("player")[0].global_position).normalized()
 	$NavigationAgent2D.set_target_position(targetPos)
 	if !$NavigationAgent2D.is_target_reachable() and $unreachableWait.time_left == 0:
 		$unreachableWait.start()
@@ -138,4 +138,9 @@ func _on_unreachable_wait_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		get_tree().root.get_child(0).game_over();
+		if get_tree().get_nodes_in_group("player")[0].score >= get_tree().get_nodes_in_group("player")[0].threshold4:
+			get_tree().get_nodes_in_group("player")[0].get_node("Eating").play()
+			get_tree().get_nodes_in_group("player")[0].score += 5
+			queue_free()
+		else:
+			get_tree().root.get_child(0).game_over();

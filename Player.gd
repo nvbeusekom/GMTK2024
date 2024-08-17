@@ -82,7 +82,7 @@ func _on_food_touch(amount):
 		get_tree().root.get_child(0).big_boy_time();
 	elif score >= threshold3:
 		SPEED = 110
-		$CollisionShape2D.scale = Vector2(5,5)
+		$CollisionShape2D.scale = Vector2(4.5,4.5)
 		$AudioStreamPlayer2D.pitch_scale = 0.8
 		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.8,1.8))
 	elif score >= threshold2:
@@ -95,9 +95,6 @@ func _on_food_touch(amount):
 		$CollisionShape2D.scale = Vector2(1.7,1.7)
 		$AudioStreamPlayer2D.pitch_scale = 1.5
 		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(2.2,2.2))
-	#scale.x += .5
-	#scale.y += .5
-	#get_tree().get_nodes_in_group("camera")[0].set_zoom(get_tree().get_nodes_in_group("camera")[0].get_zoom() * Vector2(.98,.98))
 	
 # It's joever
 func _on_guard_touch():
