@@ -70,7 +70,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk0",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -81,7 +81,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk1",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -103,7 +103,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk3",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -114,7 +114,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk4",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [node name="Player" type="Node2D"]
@@ -127,8 +127,8 @@ shape = SubResource("CapsuleShape2D_ygbid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_fls2j")
-animation = &"Walk4"
-frame_progress = 0.158627
+animation = &"Walk0"
+frame_progress = 0.844033
 
 [node name="AudioListener2D" type="AudioListener2D" parent="CharacterBody2D"]
 current = true
@@ -136,6 +136,7 @@ current = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("10_2kmkh")
 volume_db = -20.0
+pitch_scale = 2.0
 
 [node name="MusicSafe" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("11_q4bvd")
