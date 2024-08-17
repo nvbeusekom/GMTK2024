@@ -8,7 +8,7 @@ extends Node2D
 @onready var tile_map = $NavigationRegion2D/TileMapLayer
 @onready var navigation_region = $NavigationRegion2D
 
-var numberOfSeekers = 2
+var numberOfSeekers = 6
 var numberOfFood = 12
 var numberOfCans = 50
 var food = load("res://Scenes/food.tscn")

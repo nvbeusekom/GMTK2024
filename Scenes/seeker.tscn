@@ -26,7 +26,7 @@ rotation = 3.14159
 texture = ExtResource("2_allre")
 
 [node name="VisionCone2D" parent="CharacterBody2D" instance=ExtResource("2_f6hvk")]
-position = Vector2(-20, 25)
+position = Vector2(-15.5, 25)
 
 [node name="Texture light" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
 visible = false

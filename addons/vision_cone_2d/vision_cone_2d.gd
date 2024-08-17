@@ -9,7 +9,7 @@ class_name VisionCone2D
 ## Total number of rays that will be shot to cover the angle. Will be distributed at equal distances.
 ## This has the biggest impact on performance in the script.
 ## Have this high enough that it is precise, but low enough that it doesn't affect performance
-@export var ray_count = 100
+@export var ray_count = 80
 ## The maximum length of the rays. Basically how far the character can see
 @export var max_distance = 500.
 
@@ -32,11 +32,11 @@ class_name VisionCone2D
 @export_group("Optimizations")
 ## Introduce a minimum time (in msec) before recalculating. Useful to improve performance for slow moving objects,
 ## or objects where precise updates on every physics update are not necessary
-@export var minimum_recalculate_time_msec = 0
+@export var minimum_recalculate_time_msec = 25
 ## Should the vision cone be recalculated when the object hasn't moved?
 ## Set this to false to optimize by not recalculating the area if the object hasn't moved.
 ## May incorrectly avoid an update if the object rotates in place or the scene layout changes at runtime
-@export var recalculate_if_static = true
+@export var recalculate_if_static = false
 ## How far the character has to move before the vision cone is recalculated. Only used if recalculate_if_static is false
 @export var static_threshold: float = 2
 
