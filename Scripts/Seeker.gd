@@ -43,6 +43,8 @@ func _physics_process(delta):
 	if soundHeard and (global_position - targetPos).length() < 10 and $soundWait.time_left == 0: 
 		$soundWait.start()     
 	
+	if get_tree().get_nodes_in_group("player")[0].score >= get_tree().get_nodes_in_group("player")[0].threshold4:
+		targetPos = global_position + (global_position - get_tree().get_nodes_in_group("player")[0].global_position)
 	$NavigationAgent2D.set_target_position(targetPos)
 	if !$NavigationAgent2D.is_target_reachable() and $unreachableWait.time_left == 0:
 		$unreachableWait.start()

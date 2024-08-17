@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://byn2ddgkgnwh3"]
+[gd_scene load_steps=17 format=3 uid="uid://byn2ddgkgnwh3"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hvitj"]
 [ext_resource type="Texture2D" uid="uid://cdibewqloqgq6" path="res://Assets/Art/Playerfirstsize1.png" id="2_7atnp"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://ch2jma6gc5c10" path="res://Assets/Art/Playersecondsize1.png" id="3_dcwev"]
 [ext_resource type="Texture2D" uid="uid://dl54s40hekdqv" path="res://Assets/Art/Playerthirdsize1.png" id="4_caqbi"]
 [ext_resource type="Texture2D" uid="uid://v7bk5kaehnn7" path="res://Assets/Art/Playerfourthsize1.png" id="5_rd866"]
+[ext_resource type="Texture2D" uid="uid://dkotyvklud26j" path="res://Assets/Art/Playerfifthsize1.png" id="6_2x44i"]
 [ext_resource type="Texture2D" uid="uid://cgbiaeoawung8" path="res://Assets/Art/Playersecondsize2.png" id="7_coffj"]
 [ext_resource type="Texture2D" uid="uid://cjno7lqjqf6it" path="res://Assets/Art/Playerthirdsize2.png" id="8_43xs4"]
 [ext_resource type="Texture2D" uid="uid://c24ib0p8cjsco" path="res://Assets/Art/Playerfourthsize2.png" id="9_ua8mn"]
 [ext_resource type="AudioStream" uid="uid://dqn5ab08iah1x" path="res://Assets/Sound&Music/walking2.wav" id="10_2kmkh"]
+[ext_resource type="Texture2D" uid="uid://6f3lsowlgbnf" path="res://Assets/Art/Playerfifthsize2.png" id="11_1pyto"]
 [ext_resource type="AudioStream" uid="uid://b8nb5qfkqje8o" path="res://Assets/Sound&Music/notdetected.wav" id="11_q4bvd"]
 [ext_resource type="AudioStream" uid="uid://df2ponuv6s7et" path="res://Assets/Sound&Music/caught.wav" id="12_wveai"]
 
@@ -49,6 +51,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2x44i")
+}],
+"loop": true,
+"name": &"Idle4",
 "speed": 5.0
 }, {
 "frames": [{
@@ -94,6 +104,17 @@ animations = [{
 "loop": true,
 "name": &"Walk3",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2x44i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1pyto")
+}],
+"loop": true,
+"name": &"Walk4",
+"speed": 10.0
 }]
 
 [node name="Player" type="Node2D"]
@@ -106,7 +127,8 @@ shape = SubResource("CapsuleShape2D_ygbid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_fls2j")
-animation = &"Walk3"
+animation = &"Walk4"
+frame_progress = 0.607358
 
 [node name="AudioListener2D" type="AudioListener2D" parent="CharacterBody2D"]
 current = true
