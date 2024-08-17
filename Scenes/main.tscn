@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1gpfj6t7ql4e"]
+[gd_scene load_steps=8 format=3 uid="uid://b1gpfj6t7ql4e"]
 
 [ext_resource type="PackedScene" uid="uid://byn2ddgkgnwh3" path="res://Scenes/player.tscn" id="1_j32e4"]
 [ext_resource type="Script" path="res://Scenes/level_gen.gd" id="1_tdqtp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cf7d8rxmkai8y" path="res://Assets/Art/tileset.png" id="3_8ixmp"]
 [ext_resource type="PackedScene" uid="uid://dd321epjv74vk" path="res://Scenes/seeker.tscn" id="3_wllu7"]
 [ext_resource type="PackedScene" uid="uid://x3p0nrlr8igb" path="res://Scenes/food.tscn" id="4_4vvh3"]
+[ext_resource type="PackedScene" uid="uid://cnysg2ytigpmj" path="res://Scenes/can.tscn" id="6_ifwo5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ycbl"]
 texture = ExtResource("3_8ixmp")
@@ -130,3 +131,6 @@ position = Vector2(711, 688)
 
 [node name="Food10" parent="." instance=ExtResource("4_4vvh3")]
 position = Vector2(505, 712)
+
+[node name="can" parent="." instance=ExtResource("6_ifwo5")]
+position = Vector2(579, 74)

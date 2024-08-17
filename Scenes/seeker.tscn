@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c2orpk8hkat85" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_ofeyr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wsqu"]
-radius = 16.0
-height = 54.0
+radius = 22.0
+height = 64.0
 
 [node name="Seeker" type="Node2D"]
 
