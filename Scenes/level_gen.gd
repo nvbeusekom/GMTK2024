@@ -179,7 +179,7 @@ func generate():
 	
 	#Place food, cans, and seekers
 	var eligibleList = []
-	for cell in $TileMapLayer.get_used_cells_by_id(0,Vector2i(3,2)):
+	for cell in tile_map.get_used_cells_by_id(0,Vector2i(3,2)):
 		eligibleList.append(cell)
 	print(len(eligibleList))
 	if len(eligibleList) > numberOfFood + numberOfCans + numberOfSeekers:
@@ -188,19 +188,19 @@ func generate():
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = food.instantiate()
-			scene.position = $TileMapLayer.map_to_local(placeCell)
+			scene.position = tile_map.map_to_local(placeCell)
 			add_child(scene)
 		for i in range(numberOfCans):
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = can.instantiate()
-			scene.position = $TileMapLayer.map_to_local(placeCell)
+			scene.position = tile_map.map_to_local(placeCell)
 			add_child(scene)
 		for i in range(numberOfSeekers):
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = seeker.instantiate()
-			scene.position = $TileMapLayer.map_to_local(placeCell)
+			scene.position = tile_map.map_to_local(placeCell)
 			add_child(scene)
 	else:
 		print("Faulty generation")
