@@ -15,7 +15,7 @@ var food = load("res://Scenes/food.tscn")
 var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")
 var pause_node = null
-var pauseScreen = load("res://Scenes/pauseScreen.tscn")
+var pauseScreen = load("res://Scenes/pause_screen.tscn")
 
 
 # Called when the node enters the scene tree for the first time.

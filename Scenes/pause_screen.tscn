@@ -1,23 +1,23 @@
-<<<<<<< Updated upstream
-[gd_scene format=3 uid="uid://brwmx3qt0or4x"]
-=======
-[gd_scene format=3 uid="uid://br13u1catffky"]
->>>>>>> Stashed changes
+[gd_scene load_steps=2 format=3 uid="uid://brwmx3qt0or4x"]
+
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="1_rk3vk"]
 
 [node name="pauseScreen" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1933.0
+offset_bottom = 1094.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 366.0
-offset_top = 210.0
-offset_right = 715.0
-offset_bottom = 310.0
+offset_left = 691.0
+offset_top = 300.0
+offset_right = 1217.0
+offset_bottom = 445.0
 theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("1_rk3vk")
+theme_override_font_sizes/font_size = 120
 text = "Game Paused"
 vertical_alignment = 2

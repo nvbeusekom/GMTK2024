@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 @export var vision_renderer: Polygon2D
 @export var is_rotating = false
 @export var rotation_speed = 1
@@ -15,14 +12,21 @@ var goal
 var targetPos = Vector2(0,0)
 var playerSeen = false
 var soundHeard = false
+var paused = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var movement_speed = 40.0
 var movement_delta
 var angle_to_player
 
-
+func pause():
+	paused = true
+func unpause():
+	paused = false
+	
 func _physics_process(delta):
+	if paused:
+		return
 	if playerSeen:
 		soundHeard = false
 		targetPos = get_tree().get_nodes_in_group("player")[0].global_position
@@ -49,13 +53,12 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
 
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
-	# print("%s is seeing %s" % [self, body])
-	vision_renderer.color = alert_color
-	playerSeen = true
+	if body.is_in_group("player"):
+		vision_renderer.color = alert_color
+		playerSeen = true
 	#start pathfinding
 	
 func _on_vision_cone_area_body_exited(body: Node2D) -> void:
-	# print("%s stopped seeing %s" % [self, body])
 	vision_renderer.color = original_color
 	playerSeen = false
 	#start lose interest timer

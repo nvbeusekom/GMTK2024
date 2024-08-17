@@ -5,13 +5,21 @@ var score = 0
 var threshold1 = 2
 var threshold2 = 5
 var threshold3 = 10
+var paused = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play()
 
+func pause():
+	paused = true
+func unpause():
+	paused = false
+	$AnimatedSprite2D.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if paused:
+		return
 	velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
