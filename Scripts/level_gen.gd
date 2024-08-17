@@ -7,7 +7,6 @@ extends Node2D
 
 @onready var tile_map = $NavigationRegion2D/TileMapLayer
 @onready var navigation_region = $NavigationRegion2D
-@onready var player = $Player
 
 var numberOfSeekers = 4
 var numberOfFood = 30
@@ -17,57 +16,10 @@ var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")
 var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
+var destroying_shelves = false;
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	generate();
-	bake_nav();
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func recursive_pause(node):
-	for child in node.get_children():
-		if child.has_method("pause"):
-			child.pause()
-		recursive_pause(child) 
-		
-func recursive_unpause(node):
-	for child in node.get_children():
-		if child.has_method("unpause"):
-			child.unpause()
-		recursive_unpause(child) 
-
-func pause():
-	recursive_pause(self);
-	pause_node = pauseScreen.instantiate()
-	add_child(pause_node)
-
-func unpause():
-	recursive_unpause(self);
-	pause_node.queue_free() 
-
-func _input(event):
-	if Input.is_action_pressed("pause"):
-		if pause_node == null:
-			pause()
-		else:
-			unpause()
-			
-
-
-func game_over():
-	if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
-		get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
-	if get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").playing:
-		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
-	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
-		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
-	print("game over");
 	
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
@@ -93,6 +45,7 @@ var horizontal_gap3_atlas = Vector2i(0,4);
 var vertical_gap3_atlas = Vector2i(1,4);
 var empty_atlas = Vector2i(3,2);
 
+var destroyed_atlas = Vector2i(2,4);
 
 var top_left_wall_atlas = Vector2i(4,3);
 var top_right_wall_atlas = Vector2i(5,3);
@@ -103,6 +56,65 @@ var bot_wall_atlas = Vector2i(4,2);
 var left_wall_atlas = Vector2i(5,2);
 var right_wall_atlas = Vector2i(7,2);
 var full_wall = Vector2i(2,4);
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	generate();
+	bake_nav();
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if(destroying_shelves):
+		var pos = Vector2i(floor($Player/CharacterBody2D.global_position.x/64),floor($Player/CharacterBody2D.global_position.y/64))
+		var tile = tile_map.get_cell_atlas_coords(pos);
+		if(tile != empty_atlas && tile != destroyed_atlas):
+			tile_map.set_cell(pos,source_id,destroyed_atlas);
+
+
+func recursive_pause(node):
+	for child in node.get_children():
+		if child.has_method("pause"):
+			child.pause()
+		recursive_pause(child) 
+		
+func recursive_unpause(node):
+	for child in node.get_children():
+		if child.has_method("unpause"):
+			child.unpause()
+		recursive_unpause(child) 
+
+func pause():
+	recursive_pause(self);
+	pause_node = pauseScreen.instantiate()
+	add_child(pause_node)
+
+func unpause():
+	recursive_unpause(self);
+	pause_node.queue_free() 
+
+func big_boy_time():
+	tile_map.collision_enabled = false;
+	destroying_shelves = true;
+
+func _input(event):
+	if Input.is_action_pressed("pause"):
+		if pause_node == null:
+			pause()
+		else:
+			unpause()
+			
+
+
+func game_over():
+	if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
+	if get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
+	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
+		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
+	print("game over");
+	
 
 var connections = {
 	horizontal_atlas: ["left","right"],

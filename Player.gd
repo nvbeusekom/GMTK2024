@@ -79,6 +79,7 @@ func _on_food_touch(amount):
 		$CollisionShape2D.scale = Vector2(9,9)
 		$AudioStreamPlayer2D.pitch_scale = 0.5
 		get_tree().get_nodes_in_group("camera")[0].set_zoom(Vector2(1.6,1.6))
+		get_tree().root.get_child(0).big_boy_time();
 	elif score >= threshold3:
 		SPEED = 110
 		$CollisionShape2D.scale = Vector2(4.5,4.5)
