@@ -150,6 +150,7 @@ stream = ExtResource("12_wveai")
 
 [node name="Eating" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("15_km06b")
+volume_db = -10.0
 
 [node name="GameOver" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("16_6gbn8")

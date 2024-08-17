@@ -9,7 +9,7 @@ extends Node2D
 @onready var navigation_region = $NavigationRegion2D
 
 var numberOfSeekers = 4
-var numberOfFood = 30
+var numberOfFood = 50
 var numberOfCans = 50
 var food = load("res://Scenes/food.tscn")
 var seeker = load("res://Scenes/seeker.tscn")
