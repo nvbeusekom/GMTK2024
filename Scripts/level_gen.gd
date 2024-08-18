@@ -103,6 +103,8 @@ func _process(delta: float) -> void:
 	if(destroying_shelves):
 		var pos = Vector2i(floor($Player/CharacterBody2D.global_position.x/64),floor($Player/CharacterBody2D.global_position.y/64))
 		var tile = tile_map.get_cell_atlas_coords(pos);
+		if(tile == left_door_atlas || tile == right_door_atlas):
+			win_game();
 		if(tile != empty_atlas && tile != destroyed_atlas):
 			tile_map.set_cell(pos,source_id,destroyed_atlas);
 			var scene = destroySFX.instantiate()
@@ -164,10 +166,11 @@ func game_over():
 	game_over_node = game_over_screen.instantiate()
 	add_child(game_over_node);
 
+func win_game():
+	print("gg");
+
 func clear_game():
 	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
-	destroying_shelves = false
-	tile_map.collision_enabled = true
 	#player.score = 0
 	for node in get_tree().get_nodes_in_group("seeker"):
 		node.queue_free()
