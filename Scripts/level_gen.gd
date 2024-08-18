@@ -62,10 +62,7 @@ var black_atlas = Vector2i(3,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var scene = mainMenu.instantiate()
-	add_child(scene)
-	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
-	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
+	open_main_menu();
 
 func _exit() -> void:
 	get_tree().quit()
@@ -85,6 +82,11 @@ func _process(delta: float) -> void:
 			scene.global_position = pos
 			add_child(scene)
 
+func open_main_menu():
+	var scene = mainMenu.instantiate()
+	add_child(scene)
+	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
+	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
 
 func recursive_pause(node):
 	for child in node.get_children():
