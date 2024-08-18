@@ -1,6 +1,8 @@
 extends Node2D
 
 var init = true;
+var help_screen = load("res://Scenes/help_screen.tscn")
+var help_node = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,3 +49,8 @@ func _on_sound_slider_value_changed(value: float) -> void:
 		for node in get_tree().get_nodes_in_group("sound"):
 			node.volume_db = node.get_meta("basic_db") - 40 + 0.4 * value;
 		$CanvasLayer/AudioStreamPlayer2D.play();
+
+
+func _on_texture_button_pressed() -> void:
+	help_node = help_screen.instantiate();
+	add_child(help_node);

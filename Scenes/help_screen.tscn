@@ -114,7 +114,7 @@ position = Vector2(369, 775)
 scale = Vector2(4, 4)
 texture = ExtResource("5_qx5wc")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="CanvasLayer" groups=["help"]]
 offset_left = 821.0
 offset_top = 836.0
 offset_right = 992.0
