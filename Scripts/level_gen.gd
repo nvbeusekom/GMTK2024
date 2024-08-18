@@ -15,6 +15,7 @@ var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")
 var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
+var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
 var destroying_shelves = false;
 
 var source_id = 0;
@@ -66,6 +67,9 @@ func _process(delta: float) -> void:
 		var tile = tile_map.get_cell_atlas_coords(pos);
 		if(tile != empty_atlas && tile != destroyed_atlas):
 			tile_map.set_cell(pos,source_id,destroyed_atlas);
+			var scene = destroySFX.instantiate()
+			scene.global_position = pos
+			add_child(scene)
 
 
 func recursive_pause(node):
