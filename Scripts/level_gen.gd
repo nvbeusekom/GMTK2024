@@ -217,6 +217,11 @@ func generate():
 		for j in range(height + 1,height + 1 + blackExtend):
 			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
 	
+	# Add colision polygon around map
+	var surrounding_polygon = CollisionPolygon2D.new();
+	surrounding_polygon.polygon = PackedVector2Array([Vector2(-16,-16),Vector2(width*64.75,-16),Vector2(width*64.75,height*64.75),Vector2(-16,height*64.75),Vector2(-16,-128),Vector2(-128,-128),Vector2(-128,height*66),Vector2(width*66,height*66),Vector2(width*66,-128),Vector2(-16,-128)]);
+	$StaticBody2D.add_child(surrounding_polygon);
+	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
 	var possibilities = {};
 	for x in range(width):
