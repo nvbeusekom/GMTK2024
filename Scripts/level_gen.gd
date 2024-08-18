@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var noise : NoiseTexture2D;
 @export var width = 5;
 @export var height = 5;
@@ -18,9 +17,6 @@ var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
 var destroying_shelves = false;
 
-
-
-	
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
 var vertical_atlas = Vector2i(1,0);
@@ -105,7 +101,6 @@ func _input(event):
 			unpause()
 			
 
-
 func game_over():
 	if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
@@ -114,7 +109,6 @@ func game_over():
 	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
 	print("game over");
-	
 
 var connections = {
 	horizontal_atlas: ["left","right"],
@@ -141,12 +135,46 @@ var connections = {
 	empty_atlas: []
 }
 
+var weights = {
+	horizontal_atlas: 5,
+	vertical_atlas: 5,
+	left_down_atlas: 3,
+	left_up_atlas: 3,
+	right_up_atlas: 3,
+	right_down_atlas: 3,
+	t_down_atlas: 2,
+	t_left_atlas: 2,
+	t_up_atlas: 2,
+	t_right_atlas: 2,
+	cross_atlas: 1,
+	left_atlas: 2,
+	up_atlas: 2,
+	right_atlas: 2,
+	down_atlas: 2,
+	horizontal_gap1_atlas: 3,
+	vertical_gap1_atlas: 3,
+	horizontal_gap2_atlas: 2,
+	vertical_gap2_atlas: 2,
+	horizontal_gap3_atlas: 1,
+	vertical_gap3_atlas: 1,
+	empty_atlas: 20
+}
+
 func get_impossible_neighbours(contains,direction):
 	var neighbours = []
 	for key in connections.keys():
 		if(contains != connections[key].has(direction)):
 			neighbours.append(key);
 	return neighbours;
+
+func get_randomized_tile(possibilities):
+	var randomizerList = []
+	for possibility in possibilities:
+		var counter = weights[possibility]
+		while counter > 0:
+			randomizerList.append(possibility)
+			counter -= 1
+	return randomizerList.pick_random()
 
 func bake_nav():
 	var nav_polygon = NavigationPolygon.new();
@@ -197,7 +225,6 @@ func generate():
 											vertical_gap3_atlas,
 											empty_atlas];
 	
-	
 	for i in range(width):
 		for tile in get_impossible_neighbours(false,"up"):
 			possibilities[Vector2i(i,0)].erase(tile);
@@ -223,10 +250,10 @@ func generate():
 				placing = cells_on_edge[i];
 		
 		# TODO Better RNG
-		var tyle_type = possibilities[placing].pick_random();
-		if(possibilities[placing].has(empty_atlas) && randf() < 0.7):
-			tyle_type = empty_atlas;
-		
+		var tyle_type = get_randomized_tile(possibilities[placing])
+		#var tyle_type = possibilities[placing].pick_random();
+		#if(possibilities[placing].has(empty_atlas) && randf() < 0.7):
+		#	tyle_type = empty_atlas;
 		
 		if(init):
 			# Place empty
