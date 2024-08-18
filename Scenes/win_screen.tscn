@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctx06agbulvco"]
+
+[ext_resource type="Script" path="res://win_screen.gd" id="1_vexth"]
+[ext_resource type="Texture2D" uid="uid://cobjxdsu84t60" path="res://Assets/Art/winscreen0.png" id="2_hbrgf"]
+[ext_resource type="Texture2D" uid="uid://duq5kgrw5khxp" path="res://Assets/Art/winscreen1.png" id="3_nngs4"]
+[ext_resource type="Texture2D" uid="uid://1lsggn3b2cig" path="res://Assets/Art/winscreen2.png" id="4_6jq6e"]
+[ext_resource type="Texture2D" uid="uid://dcpq85b0pfmch" path="res://Assets/Art/winscreenfull.png" id="5_yxohu"]
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="6_7eq2j"]
+
+[node name="winScreen" type="Node2D"]
+script = ExtResource("1_vexth")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="win0" type="Sprite2D" parent="CanvasLayer"]
+z_index = 30
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+texture = ExtResource("2_hbrgf")
+
+[node name="win1" type="Sprite2D" parent="CanvasLayer"]
+z_index = 20
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+texture = ExtResource("3_nngs4")
+
+[node name="win2" type="Sprite2D" parent="CanvasLayer"]
+z_index = 10
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+texture = ExtResource("4_6jq6e")
+
+[node name="winfull" type="Sprite2D" parent="CanvasLayer"]
+z_index = 5
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+texture = ExtResource("5_yxohu")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = -140.0
+offset_right = 650.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -155.5
+offset_right = 575.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("6_7eq2j")
+theme_override_font_sizes/font_size = 128
+text = "You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="win0go" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="win1go" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="win2go" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="winfullgo" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="flashlights" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="win0go" to="." method="_on_win_0_go_timeout"]
+[connection signal="timeout" from="win1go" to="." method="_on_win_1_go_timeout"]
+[connection signal="timeout" from="win2go" to="." method="_on_win_2_go_timeout"]
+[connection signal="timeout" from="winfullgo" to="." method="_on_winfullgo_timeout"]
+[connection signal="timeout" from="flashlights" to="." method="_on_flashlights_timeout"]

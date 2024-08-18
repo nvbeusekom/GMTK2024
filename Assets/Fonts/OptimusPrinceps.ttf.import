@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bxi4l1uxpxe03"
-path="res://.godot/imported/OptimusPrinceps.ttf-50bba2dbfe01ab989ec143c9c3a2fb2a.fontdata"
+path="res://.godot/imported/OptimusPrinceps.ttf-e0ec7d2610ac4fb848f366b6065b0b0e.fontdata"
 
 [deps]
 
-source_file="res://Fonts/OptimusPrinceps.ttf"
-dest_files=["res://.godot/imported/OptimusPrinceps.ttf-50bba2dbfe01ab989ec143c9c3a2fb2a.fontdata"]
+source_file="res://Assets/Fonts/OptimusPrinceps.ttf"
+dest_files=["res://.godot/imported/OptimusPrinceps.ttf-e0ec7d2610ac4fb848f366b6065b0b0e.fontdata"]
 
 [params]
 
