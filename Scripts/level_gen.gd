@@ -166,6 +166,8 @@ func game_over():
 
 func clear_game():
 	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
+	destroying_shelves = false
+	tile_map.collision_enabled = true
 	#player.score = 0
 	for node in get_tree().get_nodes_in_group("seeker"):
 		node.queue_free()

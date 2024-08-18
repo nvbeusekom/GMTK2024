@@ -20,7 +20,8 @@ var soundHeard = false
 var paused = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var movement_speed = 80.0
+var base_speed = 80.0
+var movement_speed = base_speed
 var movement_delta
 var angle_to_player
 var restartTimer = [false,false,false,false]
@@ -31,6 +32,7 @@ func pause():
 	$soundWait.set_paused(true)
 	$seenWait.set_paused(true)
 	$unreachableWait.set_paused(true)
+	$AnimatedSprite2D.pause()
 	
 func unpause():
 	paused = false
@@ -38,10 +40,17 @@ func unpause():
 	$soundWait.set_paused(false)
 	$seenWait.set_paused(false)
 	$unreachableWait.set_paused(false)
+	$AnimatedSprite2D.play()
+	
+func _ready():
+	$AnimatedSprite2D.play()
 	
 func _physics_process(delta):
 	if paused:
 		return
+		
+	$AnimatedSprite2D.speed_scale = movement_speed / base_speed
+		
 	if playerSeen:
 		soundHeard = false
 		targetPos = get_tree().get_nodes_in_group("player")[0].global_position
@@ -147,6 +156,7 @@ func _on_unreachable_wait_timeout() -> void:
 	soundHeard = false
 	playerSeen = false
 	stillFollowing = false
+	movement_speed = 80
 	vision_renderer.color = original_color
 	randomPath()
 

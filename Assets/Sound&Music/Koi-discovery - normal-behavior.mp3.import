@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cm0bii0j4yvln"
+path="res://.godot/imported/Koi-discovery - normal-behavior.mp3-00d0dbfed1f4ac442b32ff30db0324df.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound&Music/Koi-discovery - normal-behavior.mp3"
+dest_files=["res://.godot/imported/Koi-discovery - normal-behavior.mp3-00d0dbfed1f4ac442b32ff30db0324df.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
