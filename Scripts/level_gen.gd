@@ -111,11 +111,13 @@ func recursive_unpause(node):
 		recursive_unpause(child) 
 
 func pause():
+	#get_tree().paused = true
 	recursive_pause(self);
 	pause_node = pauseScreen.instantiate()
 	add_child(pause_node)
 
 func unpause():
+	#get_tree().paused = false
 	recursive_unpause(self);
 	pause_node.queue_free() 
 
