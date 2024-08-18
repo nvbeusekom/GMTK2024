@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd321epjv74vk"]
+[gd_scene load_steps=15 format=3 uid="uid://dd321epjv74vk"]
 
 [ext_resource type="Script" path="res://Scripts/Seeker.gd" id="1_42gxo"]
-[ext_resource type="Texture2D" uid="uid://bvvimr0natwrx" path="res://Assets/Art/Seeker.png" id="2_allre"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_f6hvk"]
+[ext_resource type="Texture2D" uid="uid://7di2n0flxa3o" path="res://Assets/Art/Seeker1.png" id="4_4v2a0"]
 [ext_resource type="Texture2D" uid="uid://c2orpk8hkat85" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_ofeyr"]
+[ext_resource type="Texture2D" uid="uid://dbr6kml8hd6ot" path="res://Assets/Art/Seeker2.png" id="5_n83a0"]
+[ext_resource type="Texture2D" uid="uid://cxx03ni4tks71" path="res://Assets/Art/Seeker3.png" id="6_wjqx5"]
+[ext_resource type="Texture2D" uid="uid://b5wsqmh7c6shl" path="res://Assets/Art/Seeker4.png" id="7_beex4"]
+[ext_resource type="Texture2D" uid="uid://deffrokck6qdx" path="res://Assets/Art/Seeker5.png" id="8_l1vd7"]
+[ext_resource type="Texture2D" uid="uid://huf5cphksgk2" path="res://Assets/Art/Seeker6.png" id="9_0i7tr"]
+[ext_resource type="Texture2D" uid="uid://bpd63yv6hehjb" path="res://Assets/Art/Seeker7.png" id="10_2smex"]
+[ext_resource type="Texture2D" uid="uid://dp4a2b83cv0kf" path="res://Assets/Art/Seeker8.png" id="11_y5see"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_em3co"]
 radius = 20.0
@@ -12,6 +19,38 @@ height = 64.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wsqu"]
 radius = 18.0
 height = 72.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3kt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4v2a0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n83a0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wjqx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_beex4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l1vd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0i7tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2smex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_y5see")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
 
 [node name="Seeker" type="Node2D" groups=["delete"]]
 
@@ -32,12 +71,8 @@ shape = SubResource("CapsuleShape2D_em3co")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3wsqu")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-rotation = 3.14159
-texture = ExtResource("2_allre")
-
 [node name="VisionCone2D" parent="CharacterBody2D" instance=ExtResource("2_f6hvk")]
-position = Vector2(-15.5, 25)
+position = Vector2(0, 30)
 
 [node name="Texture light" type="PointLight2D" parent="CharacterBody2D/VisionCone2D"]
 visible = false
@@ -55,7 +90,7 @@ texture = ExtResource("4_ofeyr")
 texture_scale = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
-path_desired_distance = 30.0
+path_desired_distance = 10.0
 debug_enabled = true
 
 [node name="autopathIdle" type="Timer" parent="CharacterBody2D"]
@@ -73,6 +108,12 @@ one_shot = true
 [node name="unreachableWait" type="Timer" parent="CharacterBody2D"]
 wait_time = 2.0
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_s3kt3")
+animation = &"Walk"
+frame_progress = 0.985789
+flip_v = true
 
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/VisionCone2D/VisionConeArea" to="CharacterBody2D" method="_on_vision_cone_area_body_entered"]
