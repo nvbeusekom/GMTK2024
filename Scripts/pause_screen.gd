@@ -28,3 +28,15 @@ func _on_restart_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().root.get_child(0).clear_game();
 	get_tree().root.get_child(0).open_main_menu();
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	for node in get_tree().get_nodes_in_group("music"):
+		node.volume_db = -40 + 0.4 * value;
+		
+
+
+func _on_sound_slider_value_changed(value: float) -> void:
+	for node in get_tree().get_nodes_in_group("sound"):
+		node.volume_db = -40 + 0.4 * value;
+	$CanvasLayer/AudioStreamPlayer2D.play();
