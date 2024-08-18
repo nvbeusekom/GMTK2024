@@ -92,6 +92,10 @@ func _game_start() -> void:
 			numberOfSeekers = 10;
 			numberOfFood = 20;
 			numberOfCans = 50;
+		if $TitleScreen/CanvasLayer/OptionButton.selected == 3:
+			numberOfSeekers = 15;
+			numberOfFood = 17;
+			numberOfCans = 500;
 		$TitleScreen.queue_free()
 	var scene = player.instantiate()
 	scene.global_position = Vector2(45,45)
@@ -403,7 +407,9 @@ func generate():
 	for cell in tile_map.get_used_cells_by_id(0,Vector2i(3,2)):
 		if (tile_map.map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].position).length() > 450:
 			eligibleList.append(cell)
-	if len(eligibleList) > numberOfFood + numberOfCans + numberOfSeekers:
+	if len(eligibleList) < numberOfFood + numberOfCans + numberOfSeekers:
+		numberOfCans = max(len(eligibleList) - numberOfFood - numberOfSeekers,0)
+	if len(eligibleList) >= numberOfFood + numberOfCans + numberOfSeekers:
 		for i in range(numberOfFood):
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))

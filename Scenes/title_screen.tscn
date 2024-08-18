@@ -1,4 +1,3 @@
-
 [gd_scene load_steps=5 format=3 uid="uid://hduhrlu7gb6s"]
 
 [ext_resource type="Texture2D" uid="uid://gii520yy4lwa" path="res://Assets/Art/TitleScreen.png" id="1_t4c2n"]
@@ -49,12 +48,14 @@ theme_override_fonts/font = ExtResource("2_ucbqs")
 theme_override_font_sizes/font_size = 128
 alignment = 1
 selected = 0
-item_count = 3
+item_count = 4
 popup/item_0/text = "Easy"
 popup/item_1/text = "Medium"
 popup/item_1/id = 1
 popup/item_2/text = "Hard"
 popup/item_2/id = 2
+popup/item_3/text = "Insane"
+popup/item_3/id = 3
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
 offset_left = 1690.0
