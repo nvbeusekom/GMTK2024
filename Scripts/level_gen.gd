@@ -64,6 +64,8 @@ var left_wall_atlas = Vector2i(5,2);
 var right_wall_atlas = Vector2i(7,2);
 var full_wall = Vector2i(2,4);
 var black_atlas = Vector2i(3,4);
+var left_door_atlas = Vector2i(4,4);
+var right_door_atlas = Vector2i(5,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -270,9 +272,12 @@ func generate():
 		for j in range(height + 1,height + 1 + blackExtend):
 			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
 	
+	tile_map.set_cell(Vector2i(1,-1),source_id,left_door_atlas);
+	tile_map.set_cell(Vector2i(2,-1),source_id,right_door_atlas);
+	
 	# Add colision polygon around map
 	var surrounding_polygon = CollisionPolygon2D.new();
-	surrounding_polygon.polygon = PackedVector2Array([Vector2(-16,-16),Vector2(width*64.75,-16),Vector2(width*64.75,height*64.75),Vector2(-16,height*64.75),Vector2(-16,-128),Vector2(-128,-128),Vector2(-128,height*66),Vector2(width*66,height*66),Vector2(width*66,-128),Vector2(-16,-128)]);
+	surrounding_polygon.polygon = PackedVector2Array([Vector2(-16,-16),Vector2(64,-16),Vector2(64,-64),Vector2(192,-64),Vector2(192,-16),Vector2(width*64.75,-16),Vector2(width*64.75,height*64.75),Vector2(-16,height*64.75),Vector2(-16,-128),Vector2(-128,-128),Vector2(-128,height*66),Vector2(width*66,height*66),Vector2(width*66,-128),Vector2(-16,-128)]);
 	$StaticBody2D.add_child(surrounding_polygon);
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
