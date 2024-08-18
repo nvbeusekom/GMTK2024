@@ -151,7 +151,7 @@ func big_boy_time():
 		bigBoyFirst = false
 
 func _input(event):
-	if Input.is_action_pressed("pause") && game_over_node != null:
+	if Input.is_action_just_pressed("pause") && game_over_node == null && $TitleScreen == null:
 		if pause_node == null:
 			pause()
 		else:
@@ -394,7 +394,7 @@ func generate():
 	#Place food, cans, and seekers
 	var eligibleList = []
 	for cell in tile_map.get_used_cells_by_id(0,Vector2i(3,2)):
-		if (tile_map.map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].position).length() > 250:
+		if (tile_map.map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].position).length() > 450:
 			eligibleList.append(cell)
 	if len(eligibleList) > numberOfFood + numberOfCans + numberOfSeekers:
 		for i in range(numberOfFood):

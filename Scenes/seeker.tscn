@@ -112,7 +112,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_s3kt3")
 animation = &"Walk"
-frame_progress = 0.82386
+frame_progress = 0.765022
 flip_v = true
 
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
