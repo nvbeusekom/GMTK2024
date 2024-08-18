@@ -22,6 +22,7 @@ var mainMenu = load("res://Scenes/title_screen.tscn")
 var player = load("res://Scenes/player.tscn")
 var HUD = load("res://Scenes/HUD.tscn")
 var escapePopUp = load("res://Scenes/escape_popup.tscn")
+var winScreen = load("res://Scenes/win_screen.tscn")
 var destroying_shelves = false;
 var blackExtend = 20
 var maxOffset = 20
@@ -172,10 +173,12 @@ func game_over():
 	add_child(game_over_node);
 
 func win_game():
-	print("gg");
+	clear_game()
+	add_child(winScreen.instantiate())
 
 func clear_game():
 	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
+	destroying_shelves = false
 	#player.score = 0
 	for node in get_tree().get_nodes_in_group("seeker"):
 		node.queue_free()
