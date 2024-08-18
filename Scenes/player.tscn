@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://byn2ddgkgnwh3"]
+[gd_scene load_steps=20 format=3 uid="uid://byn2ddgkgnwh3"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hvitj"]
 [ext_resource type="Texture2D" uid="uid://cdibewqloqgq6" path="res://Assets/Art/Playerfirstsize1.png" id="2_7atnp"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://df2ponuv6s7et" path="res://Assets/Sound&Music/caught.wav" id="12_wveai"]
 [ext_resource type="AudioStream" uid="uid://chhk8oyk1fymc" path="res://Assets/Sound&Music/eating2.mp3" id="15_km06b"]
 [ext_resource type="AudioStream" uid="uid://e30xf0c7jiw3" path="res://Assets/Sound&Music/GameOver.wav" id="16_6gbn8"]
+[ext_resource type="AudioStream" uid="uid://byp3hcembdvqn" path="res://Assets/Sound&Music/geluidje.wav" id="17_pud4v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygbid"]
 radius = 2.0
@@ -159,3 +160,7 @@ metadata/basic_db = -10.0
 [node name="GameOver" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("16_6gbn8")
 metadata/basic_db = 0.0
+
+[node name="MakeSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("17_pud4v")
+pitch_scale = 2.0

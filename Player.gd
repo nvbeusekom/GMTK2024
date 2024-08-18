@@ -36,6 +36,7 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 	if Input.is_action_just_pressed("emit_sound"):
+		$MakeSound.play()
 		for seeker in get_tree().get_nodes_in_group("seeker"):
 			seeker._on_sound_heard(global_position)
 	
@@ -80,6 +81,7 @@ func _on_food_touch(amount):
 		$CollisionShape2D.scale = Vector2(9,9)
 		$AudioStreamPlayer2D.pitch_scale = 0.5
 		$Eating.pitch_scale = 0.75
+		$MakeSound.pitch_scale = 0.75
 		get_tree().get_nodes_in_group("progressBar")[0].scale.y = 1
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(1.6,1.6))
 		get_tree().root.get_child(0).big_boy_time();
@@ -87,18 +89,21 @@ func _on_food_touch(amount):
 		SPEED = 110
 		$CollisionShape2D.scale = Vector2(4.5,4.5)
 		$AudioStreamPlayer2D.pitch_scale = 0.8
+		$MakeSound.pitch_scale = 0.8
 		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,(score-threshold3)/(threshold4-threshold3)))
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(1.8,1.8))
 	elif score >= threshold2:
 		SPEED = 130
 		$CollisionShape2D.scale = Vector2(3,3)
 		$AudioStreamPlayer2D.pitch_scale = 1
+		$MakeSound.pitch_scale = 1
 		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,(score-threshold2)/(threshold3-threshold2)))
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(2,2))
 	elif score >= threshold1:
 		SPEED = 160
 		$CollisionShape2D.scale = Vector2(1.7,1.7)
 		$AudioStreamPlayer2D.pitch_scale = 1.5
+		$MakeSound.pitch_scale = 1.5
 		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,(score-threshold1)/(threshold2-threshold1)))
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(2.2,2.2))
 	else:
