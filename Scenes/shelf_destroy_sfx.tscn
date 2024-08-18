@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb78sb2p78arw"]
+[gd_scene load_steps=3 format=3 uid="uid://841ropxlb8gp"]
 
 [ext_resource type="Script" path="res://shelf_destroy_sfx.gd" id="1_tvjtb"]
 [ext_resource type="AudioStream" uid="uid://npa2nn1cqaoo" path="res://Assets/Sound&Music/shelvesDestroy.wav" id="2_x47cw"]
