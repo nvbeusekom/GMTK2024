@@ -33,3 +33,22 @@ theme_override_fonts/font = ExtResource("2_ucbqs")
 theme_override_font_sizes/font_size = 128
 text = "Quit
 "
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer"]
+offset_left = 556.0
+offset_top = 679.0
+offset_right = 836.0
+offset_bottom = 841.0
+theme_override_colors/font_pressed_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_colors/font_focus_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("2_ucbqs")
+theme_override_font_sizes/font_size = 128
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2

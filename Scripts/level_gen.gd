@@ -74,6 +74,18 @@ func _exit() -> void:
 
 func _game_start() -> void:
 	if $TitleScreen != null:
+		if $TitleScreen/CanvasLayer/OptionButton.selected == 0:
+			numberOfSeekers = 4;
+			numberOfFood = 50;
+			numberOfCans = 20;
+		if $TitleScreen/CanvasLayer/OptionButton.selected == 1:
+			numberOfSeekers = 7;
+			numberOfFood = 35;
+			numberOfCans = 35;
+		if $TitleScreen/CanvasLayer/OptionButton.selected == 2:
+			numberOfSeekers = 10;
+			numberOfFood = 20;
+			numberOfCans = 50;
 		$TitleScreen.queue_free()
 	var scene = player.instantiate()
 	scene.global_position = Vector2(45,45)
@@ -146,7 +158,7 @@ func game_over():
 		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
 	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
-	clear_game();
+	
 	game_over_node = game_over_screen.instantiate()
 	add_child(game_over_node);
 
