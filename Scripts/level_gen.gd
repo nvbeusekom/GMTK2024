@@ -16,6 +16,7 @@ var can = load("res://Scenes/can.tscn")
 var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
+var mainMenu = load("res://Scenes/title_screen.tscn")
 var destroying_shelves = false;
 var blackExtend = 20
 var maxOffset = 20
@@ -59,10 +60,18 @@ var black_atlas = Vector2i(3,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var scene = mainMenu.instantiate()
+	add_child(scene)
+	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
+	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
+
+func _exit() -> void:
+	get_tree().quit()
+
+func _game_start() -> void:
+	$TitleScreen.queue_free()
 	generate();
 	bake_nav();
-	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(destroying_shelves):
