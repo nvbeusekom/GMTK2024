@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 @export var SPEED = 240
-var score = 0
-var threshold1 = 2
-var threshold2 = 5
-var threshold3 = 10
-var threshold4 = 15
+var score = 0.0
+var threshold1 = 2.0
+var threshold2 = 5.0
+var threshold3 = 10.0
+var threshold4 = 15.0
 var paused = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,28 +74,35 @@ func _process(delta):
 	
 func _on_food_touch(amount):
 	score += amount
+	get_tree().get_nodes_in_group("scoreLabel")[0].text = str(score)
 	if score >= threshold4:
 		SPEED = 90
 		$CollisionShape2D.scale = Vector2(9,9)
 		$AudioStreamPlayer2D.pitch_scale = 0.5
 		$Eating.pitch_scale = 0.75
+		get_tree().get_nodes_in_group("progressBar")[0].scale.y = 1
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(1.6,1.6))
 		get_tree().root.get_child(0).big_boy_time();
 	elif score >= threshold3:
 		SPEED = 110
 		$CollisionShape2D.scale = Vector2(4.5,4.5)
 		$AudioStreamPlayer2D.pitch_scale = 0.8
+		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,(score-threshold3)/(threshold4-threshold3)))
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(1.8,1.8))
 	elif score >= threshold2:
 		SPEED = 130
 		$CollisionShape2D.scale = Vector2(3,3)
 		$AudioStreamPlayer2D.pitch_scale = 1
+		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,(score-threshold2)/(threshold3-threshold2)))
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(2,2))
 	elif score >= threshold1:
 		SPEED = 160
 		$CollisionShape2D.scale = Vector2(1.7,1.7)
 		$AudioStreamPlayer2D.pitch_scale = 1.5
+		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,(score-threshold1)/(threshold2-threshold1)))
 		get_tree().get_nodes_in_group("camera")[0].smooth_zoom(Vector2(2.2,2.2))
+	else:
+		get_tree().get_nodes_in_group("progressBar")[0].set_scale(Vector2(1,score/threshold1))
 	
 # It's joever
 func _on_guard_touch():

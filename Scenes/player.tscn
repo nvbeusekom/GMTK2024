@@ -154,3 +154,4 @@ volume_db = -10.0
 
 [node name="GameOver" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("16_6gbn8")
+volume_db = -10.0

@@ -20,6 +20,7 @@ var game_over_screen = load("res://Scenes/game_over.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
 var mainMenu = load("res://Scenes/title_screen.tscn")
 var player = load("res://Scenes/player.tscn")
+var HUD = load("res://Scenes/HUD.tscn")
 var destroying_shelves = false;
 var blackExtend = 20
 var maxOffset = 20
@@ -77,6 +78,7 @@ func _game_start() -> void:
 	var scene = player.instantiate()
 	scene.global_position = Vector2(45,45)
 	add_child(scene)
+	add_child(HUD.instantiate())
 	generate();
 	bake_nav();
 	if $pauseScreen != null:
