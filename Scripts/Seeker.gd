@@ -23,11 +23,21 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var movement_speed = 80.0
 var movement_delta
 var angle_to_player
+var restartTimer = [false,false,false,false]
 
 func pause():
 	paused = true
+	$autopathIdle.set_paused(true)
+	$soundWait.set_paused(true)
+	$seenWait.set_paused(true)
+	$unreachableWait.set_paused(true)
+	
 func unpause():
 	paused = false
+	$autopathIdle.set_paused(false)
+	$soundWait.set_paused(false)
+	$seenWait.set_paused(false)
+	$unreachableWait.set_paused(false)
 	
 func _physics_process(delta):
 	if paused:
