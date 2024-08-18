@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1gpfj6t7ql4e"]
+[gd_scene load_steps=9 format=3 uid="uid://b1gpfj6t7ql4e"]
 
-[ext_resource type="PackedScene" uid="uid://byn2ddgkgnwh3" path="res://Scenes/player.tscn" id="1_j32e4"]
 [ext_resource type="Script" path="res://Scripts/level_gen.gd" id="1_tdqtp"]
 [ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_wx2nf"]
 [ext_resource type="Texture2D" uid="uid://cf7d8rxmkai8y" path="res://Assets/Art/tileset.png" id="3_8ixmp"]
@@ -94,7 +93,7 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_0ycbl")
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["main"]]
 script = ExtResource("1_tdqtp")
 width = 20
 height = 20
@@ -114,9 +113,6 @@ navigation_layers = 3
 position = Vector2(78, 35)
 tile_set = SubResource("TileSet_6fvoh")
 navigation_enabled = false
-
-[node name="Player" parent="." instance=ExtResource("1_j32e4")]
-position = Vector2(46, 43)
 
 [node name="Seeker" parent="." instance=ExtResource("3_wllu7")]
 position = Vector2(699, 459)

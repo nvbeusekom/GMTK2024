@@ -19,6 +19,7 @@ var game_over_node = null
 var game_over_screen = load("res://Scenes/game_over.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
 var mainMenu = load("res://Scenes/title_screen.tscn")
+var player = load("res://Scenes/player.tscn")
 var destroying_shelves = false;
 var blackExtend = 20
 var maxOffset = 20
@@ -68,9 +69,16 @@ func _exit() -> void:
 	get_tree().quit()
 
 func _game_start() -> void:
-	$TitleScreen.queue_free()
+	if $TitleScreen != null:
+		$TitleScreen.queue_free()
+	var scene = player.instantiate()
+	scene.global_position = Vector2(45,45)
+	add_child(scene)
 	generate();
 	bake_nav();
+	if $pauseScreen != null:
+		unpause()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(destroying_shelves):
