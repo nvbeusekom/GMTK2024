@@ -57,7 +57,7 @@ radius = 11.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_g46fq"]
 radius = 15.0
 
-[node name="can" type="Node2D"]
+[node name="can" type="Node2D" groups=["delete"]]
 script = ExtResource("1_styvo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

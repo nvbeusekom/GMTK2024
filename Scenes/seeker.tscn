@@ -13,7 +13,7 @@ height = 64.0
 radius = 18.0
 height = 72.0
 
-[node name="Seeker" type="Node2D"]
+[node name="Seeker" type="Node2D" groups=["delete"]]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("vision_renderer") groups=["seeker"]]
 script = ExtResource("1_42gxo")
