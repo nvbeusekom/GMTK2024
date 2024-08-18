@@ -141,16 +141,21 @@ current = true
 stream = ExtResource("10_2kmkh")
 volume_db = -20.0
 pitch_scale = 2.0
+metadata/basic_db = -20.0
 
 [node name="MusicSafe" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("11_q4bvd")
+metadata/basic_db = 0.0
 
 [node name="MusicChase" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("12_wveai")
+metadata/basic_db = 0.0
 
 [node name="Eating" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["sound"]]
 stream = ExtResource("15_km06b")
 volume_db = -10.0
+metadata/basic_db = -10.0
 
 [node name="GameOver" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("16_6gbn8")
+metadata/basic_db = 0.0

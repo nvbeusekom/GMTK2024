@@ -1,10 +1,15 @@
 extends Node2D
 
+var init = true;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/ColorRect.size = DisplayServer.window_get_size();
-
+	$CanvasLayer/MusicSlider.value = (get_tree().get_nodes_in_group("music")[0].volume_db - get_tree().get_nodes_in_group("music")[0].get_meta("basic_db") + 40) / 0.4;
+	$CanvasLayer/SoundSlider.value = (get_tree().get_nodes_in_group("sound")[0].volume_db - get_tree().get_nodes_in_group("sound")[0].get_meta("basic_db") + 40) / 0.4;
+	init = false;
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	pass
 
@@ -31,12 +36,14 @@ func _on_quit_pressed() -> void:
 
 
 func _on_music_slider_value_changed(value: float) -> void:
-	for node in get_tree().get_nodes_in_group("music"):
-		node.volume_db = -40 + 0.4 * value;
+	if(!init):
+		for node in get_tree().get_nodes_in_group("music"):
+			node.volume_db = node.get_meta("basic_db") -40 + 0.4 * value;
 		
 
 
 func _on_sound_slider_value_changed(value: float) -> void:
-	for node in get_tree().get_nodes_in_group("sound"):
-		node.volume_db = -40 + 0.4 * value;
-	$CanvasLayer/AudioStreamPlayer2D.play();
+	if(!init):
+		for node in get_tree().get_nodes_in_group("sound"):
+			node.volume_db = node.get_meta("basic_db") - 40 + 0.4 * value;
+		$CanvasLayer/AudioStreamPlayer2D.play();
