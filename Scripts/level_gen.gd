@@ -17,6 +17,7 @@ var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
 var destroying_shelves = false;
+var blackExtend = 20
 
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
@@ -53,6 +54,7 @@ var bot_wall_atlas = Vector2i(4,2);
 var left_wall_atlas = Vector2i(5,2);
 var right_wall_atlas = Vector2i(7,2);
 var full_wall = Vector2i(2,4);
+var black_atlas = Vector2i(3,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -201,6 +203,18 @@ func generate():
 		tile_map.set_cell(Vector2i(-1,i),source_id,left_wall_atlas);
 		tile_map.set_cell(Vector2i(width,i),source_id,right_wall_atlas);
 	
+	for i in range(-blackExtend,-1): #left
+		for j in range(-blackExtend,height + 1 + blackExtend):
+			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
+	for i in range(width + 1,width + 1 + blackExtend): #right
+		for j in range(-blackExtend,height + 1 + blackExtend):
+			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
+	for i in range(-blackExtend,width + 1 + blackExtend): #up
+		for j in range(-blackExtend,-1):
+			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
+	for i in range(-blackExtend,width + 1 + blackExtend): #down
+		for j in range(height + 1,height + 1 + blackExtend):
+			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
 	var possibilities = {};
