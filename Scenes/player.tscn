@@ -161,6 +161,7 @@ metadata/basic_db = -10.0
 stream = ExtResource("16_6gbn8")
 metadata/basic_db = 0.0
 
-[node name="MakeSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="MakeSound" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["sound"]]
 stream = ExtResource("17_pud4v")
 pitch_scale = 2.0
+metadata/basic_db = 0.0
