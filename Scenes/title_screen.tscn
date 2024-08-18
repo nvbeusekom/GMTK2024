@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7rxpn35d34gf"]
+[gd_scene load_steps=5 format=3 uid="uid://hduhrlu7gb6s"]
 
 [ext_resource type="Texture2D" uid="uid://gii520yy4lwa" path="res://Assets/Art/TitleScreen.png" id="1_t4c2n"]
 [ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="2_ucbqs"]

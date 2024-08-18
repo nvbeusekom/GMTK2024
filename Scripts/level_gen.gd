@@ -242,7 +242,7 @@ var weights = {
 	vertical_gap2_atlas: 3,
 	horizontal_gap3_atlas: 2,
 	vertical_gap3_atlas: 2,
-	empty_atlas: 30
+	empty_atlas: 20
 }
 
 func get_impossible_neighbours(contains,direction):
