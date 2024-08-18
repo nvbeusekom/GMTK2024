@@ -82,7 +82,7 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 	#start lose interest timer
 	
 func _on_sound_heard(soundOrigin: Vector2) -> void:
-	if !playerSeen:
+	if !playerSeen and (soundOrigin - global_position).length() < 1000:
 		$soundWait.stop()
 		vision_renderer.color = sound_color
 		soundHeard = true

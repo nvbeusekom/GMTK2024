@@ -11,9 +11,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var z = get_zoom();
-	if(z < zoom_goal):
+	if(z < Vector2(zoom_goal.x - zoom_delta, zoom_goal.y - zoom_delta)):
 		set_zoom(Vector2(z.x+zoom_delta,z.y+zoom_delta));
-	elif(z > zoom_goal):
+	elif(z > Vector2(zoom_goal.x + zoom_delta, zoom_goal.y + zoom_delta)):
 		set_zoom(Vector2(z.x-zoom_delta,z.y-zoom_delta));
 
 func set_zoom_speed(delta):

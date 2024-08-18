@@ -7,7 +7,7 @@ extends Node2D
 @onready var tile_map = $NavigationRegion2D/TileMapLayer
 @onready var navigation_region = $NavigationRegion2D
 
-var numberOfSeekers = 4
+var numberOfSeekers = 10
 var numberOfFood = 50
 var numberOfCans = 50
 var food = load("res://Scenes/food.tscn")
@@ -249,7 +249,6 @@ func generate():
 			if(possibilities[cells_on_edge[i]].size() < possibilities[placing].size()):
 				placing = cells_on_edge[i];
 		
-		# TODO Better RNG
 		var tyle_type = get_randomized_tile(possibilities[placing])
 		#var tyle_type = possibilities[placing].pick_random();
 		#if(possibilities[placing].has(empty_atlas) && randf() < 0.7):

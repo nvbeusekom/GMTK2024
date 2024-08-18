@@ -96,8 +96,8 @@ sources/0 = SubResource("TileSetAtlasSource_0ycbl")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tdqtp")
-width = 50
-height = 50
+width = 20
+height = 20
 
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false

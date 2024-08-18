@@ -13,6 +13,8 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("_on_food_touch"):
+		for seeker in get_tree().get_nodes_in_group("seeker"):
+			seeker._on_sound_heard(global_position)
 		body._on_food_touch(1)
 		body.get_node("Eating").play()
 		$Sprite2D.queue_free()

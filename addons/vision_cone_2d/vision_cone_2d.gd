@@ -9,7 +9,7 @@ class_name VisionCone2D
 ## Total number of rays that will be shot to cover the angle. Will be distributed at equal distances.
 ## This has the biggest impact on performance in the script.
 ## Have this high enough that it is precise, but low enough that it doesn't affect performance
-@export var ray_count = 80
+@export var ray_count = 40
 ## The maximum length of the rays. Basically how far the character can see
 @export var max_distance = 200.
 
