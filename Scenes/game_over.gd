@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 		color.a += text_delta;
 		if(color.a >= 1):
 			text_shown = true;
+		$CanvasLayer/CenterContainer/Label
 		$CanvasLayer/CenterContainer/Label.remove_theme_color_override("font_color");
 		$CanvasLayer/CenterContainer/Label.add_theme_color_override("font_color",color);
 	elif(color.a > 0):
@@ -31,9 +32,17 @@ func _process(delta: float) -> void:
 		$CanvasLayer/CenterContainer/Label.remove_theme_color_override("font_color");
 		$CanvasLayer/CenterContainer/Label.add_theme_color_override("font_color",color);
 	else:
-		get_tree().root.get_child(0).clear_game();
-		get_tree().root.get_child(0).open_main_menu();
-		self.queue_free();
+		end_death_screen();
 		
-
-		
+func end_death_screen():
+	get_tree().root.get_child(0).clear_game();
+	get_tree().root.get_child(0).open_main_menu();
+	self.queue_free();
+	
+func _input(event):
+	# Mouse in viewport coordinates.
+	if event is InputEventMouseButton:
+		end_death_screen();
+	if event is InputEventKey:
+		if event.pressed and (event.keycode == KEY_ESCAPE || event.keycode == KEY_SPACE):
+			end_death_screen();

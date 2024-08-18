@@ -66,6 +66,8 @@ var left_wall_atlas = Vector2i(5,2);
 var right_wall_atlas = Vector2i(7,2);
 var full_wall = Vector2i(2,4);
 var black_atlas = Vector2i(3,4);
+var left_door_atlas = Vector2i(4,4);
+var right_door_atlas = Vector2i(5,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -103,6 +105,8 @@ func _process(delta: float) -> void:
 	if(destroying_shelves):
 		var pos = Vector2i(floor($Player/CharacterBody2D.global_position.x/64),floor($Player/CharacterBody2D.global_position.y/64))
 		var tile = tile_map.get_cell_atlas_coords(pos);
+		if(tile == left_door_atlas || tile == right_door_atlas):
+			win_game();
 		if(tile != empty_atlas && tile != destroyed_atlas):
 			tile_map.set_cell(pos,source_id,destroyed_atlas);
 			var scene = destroySFX.instantiate()
@@ -146,7 +150,7 @@ func big_boy_time():
 		bigBoyFirst = false
 
 func _input(event):
-	if Input.is_action_pressed("pause"):
+	if Input.is_action_pressed("pause") && game_over_node != null:
 		if pause_node == null:
 			pause()
 		else:
@@ -167,10 +171,11 @@ func game_over():
 	game_over_node = game_over_screen.instantiate()
 	add_child(game_over_node);
 
+func win_game():
+	print("gg");
+
 func clear_game():
 	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
-	destroying_shelves = false
-	tile_map.collision_enabled = true
 	#player.score = 0
 	for node in get_tree().get_nodes_in_group("seeker"):
 		node.queue_free()
@@ -277,9 +282,12 @@ func generate():
 		for j in range(height + 1,height + 1 + blackExtend):
 			tile_map.set_cell(Vector2i(i,j),source_id,black_atlas)
 	
+	tile_map.set_cell(Vector2i(1,-1),source_id,left_door_atlas);
+	tile_map.set_cell(Vector2i(2,-1),source_id,right_door_atlas);
+	
 	# Add colision polygon around map
 	var surrounding_polygon = CollisionPolygon2D.new();
-	surrounding_polygon.polygon = PackedVector2Array([Vector2(-16,-16),Vector2(width*64.75,-16),Vector2(width*64.75,height*64.75),Vector2(-16,height*64.75),Vector2(-16,-128),Vector2(-128,-128),Vector2(-128,height*66),Vector2(width*66,height*66),Vector2(width*66,-128),Vector2(-16,-128)]);
+	surrounding_polygon.polygon = PackedVector2Array([Vector2(-16,-16),Vector2(64,-16),Vector2(64,-64),Vector2(192,-64),Vector2(192,-16),Vector2(width*64.75,-16),Vector2(width*64.75,height*64.75),Vector2(-16,height*64.75),Vector2(-16,-128),Vector2(-128,-128),Vector2(-128,height*66),Vector2(width*66,height*66),Vector2(width*66,-128),Vector2(-16,-128)]);
 	$StaticBody2D.add_child(surrounding_polygon);
 	
 	# Initially, assume that all neighbours are possible everywhere. These arrays are reduced throughout generation
