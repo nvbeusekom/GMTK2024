@@ -137,21 +137,21 @@ frame_progress = 0.918904
 [node name="AudioListener2D" type="AudioListener2D" parent="CharacterBody2D"]
 current = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["sound"]]
 stream = ExtResource("10_2kmkh")
 volume_db = -20.0
 pitch_scale = 2.0
 
-[node name="MusicSafe" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="MusicSafe" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("11_q4bvd")
 
-[node name="MusicChase" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="MusicChase" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("12_wveai")
 
-[node name="Eating" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="Eating" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["sound"]]
 stream = ExtResource("15_km06b")
 volume_db = -10.0
 
-[node name="GameOver" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="GameOver" type="AudioStreamPlayer2D" parent="CharacterBody2D" groups=["music"]]
 stream = ExtResource("16_6gbn8")
 volume_db = -10.0

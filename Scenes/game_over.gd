@@ -31,6 +31,8 @@ func _process(delta: float) -> void:
 		$CanvasLayer/CenterContainer/Label.remove_theme_color_override("font_color");
 		$CanvasLayer/CenterContainer/Label.add_theme_color_override("font_color",color);
 	else:
-		# TODO to main menu
-		pass
+		get_tree().root.get_child(0).open_main_menu();
+		self.queue_free();
+		
+
 		

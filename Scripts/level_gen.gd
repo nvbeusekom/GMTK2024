@@ -64,10 +64,7 @@ var black_atlas = Vector2i(3,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var scene = mainMenu.instantiate()
-	add_child(scene)
-	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
-	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
+	open_main_menu();
 
 func _exit() -> void:
 	get_tree().quit()
@@ -95,6 +92,11 @@ func _process(delta: float) -> void:
 			scene.global_position = pos
 			add_child(scene)
 
+func open_main_menu():
+	var scene = mainMenu.instantiate()
+	add_child(scene)
+	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
+	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
 
 func recursive_pause(node):
 	for child in node.get_children():
@@ -139,9 +141,17 @@ func game_over():
 		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
 	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
-	
+	clear_game();
 	game_over_node = game_over_screen.instantiate()
 	add_child(game_over_node);
+
+func clear_game():
+	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
+	#player.score = 0
+	for node in get_tree().get_nodes_in_group("seeker"):
+		node.queue_free()
+	for node in get_tree().get_nodes_in_group("delete"):
+		node.queue_free()
 
 var connections = {
 	horizontal_atlas: ["left","right"],
