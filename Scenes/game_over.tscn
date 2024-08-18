@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://de22ucfwc53ev"]
 
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_q1ku3"]
-[ext_resource type="FontFile" uid="uid://bxi4l1uxpxe03" path="res://Fonts/OptimusPrinceps.ttf" id="2_ysrp4"]
+[ext_resource type="FontFile" uid="uid://bxi4l1uxpxe03" path="res://Assets/Fonts/OptimusPrinceps.ttf" id="2_ysrp4"]
 
 [node name="GameOver" type="Node2D"]
 scale = Vector2(0.991095, 0.948181)
