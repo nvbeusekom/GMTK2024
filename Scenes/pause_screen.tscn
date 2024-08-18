@@ -102,6 +102,7 @@ text = "🔊"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer" groups=["sound"]]
 stream = ExtResource("4_r2gwd")
+metadata/basic_db = 0.0
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_restart_pressed"]

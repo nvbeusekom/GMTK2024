@@ -25,6 +25,9 @@ var destroying_shelves = false;
 var blackExtend = 20
 var maxOffset = 20
 
+var music_offset = 0;
+var sound_offset = 0;
+
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
 var vertical_atlas = Vector2i(1,0);
