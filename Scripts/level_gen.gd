@@ -17,6 +17,7 @@ var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
 var game_over_node = null
 var game_over_screen = load("res://Scenes/game_over.tscn")
+var help_screen = load("res://Scenes/help_screen.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
 var mainMenu = load("res://Scenes/title_screen.tscn")
 var player = load("res://Scenes/player.tscn")
@@ -105,7 +106,7 @@ func _process(delta: float) -> void:
 		var tile = tile_map.get_cell_atlas_coords(pos);
 		if(tile == left_door_atlas || tile == right_door_atlas):
 			win_game();
-		if(tile != empty_atlas && tile != destroyed_atlas):
+		elif(tile != empty_atlas && tile != destroyed_atlas):
 			tile_map.set_cell(pos,source_id,destroyed_atlas);
 			var scene = destroySFX.instantiate()
 			scene.global_position = pos
@@ -116,6 +117,11 @@ func open_main_menu():
 	add_child(scene)
 	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
 	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
+	$TitleScreen/CanvasLayer/TextureButton.pressed.connect(_tutorial)
+
+func _tutorial():
+	var scene = help_screen.instantiate()
+	add_child(scene)
 
 func recursive_pause(node):
 	for child in node.get_children():
@@ -145,7 +151,7 @@ func big_boy_time():
 	destroying_shelves = true;
 
 func _input(event):
-	if Input.is_action_pressed("pause") && game_over_node != null:
+	if Input.is_action_pressed("pause") && game_over_node == null:
 		if pause_node == null:
 			pause()
 		else:

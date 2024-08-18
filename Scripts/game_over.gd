@@ -1,7 +1,7 @@
 extends Node2D
 
-var blackscreen_delta = 0.04;
-var text_delta = 0.01
+var blackscreen_delta = 0.035;
+var text_delta = 0.008
 var label_theme = null
 
 var color = Color(130,0,0,0);
