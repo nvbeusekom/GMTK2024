@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://de22ucfwc53ev"]
+
+[ext_resource type="Script" path="res://Scenes/game_over.gd" id="1_q1ku3"]
+[ext_resource type="FontFile" uid="uid://bxi4l1uxpxe03" path="res://Fonts/OptimusPrinceps.ttf" id="2_ysrp4"]
+
+[node name="GameOver" type="Node2D"]
+scale = Vector2(0.991095, 0.948181)
+script = ExtResource("1_q1ku3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3.6254, 5.11269)
+use_top_left = true
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ysrp4")
+theme_override_font_sizes/font_size = 64
+text = "YOU DIED"

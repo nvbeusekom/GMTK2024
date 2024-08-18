@@ -15,6 +15,8 @@ var seeker = load("res://Scenes/seeker.tscn")
 var can = load("res://Scenes/can.tscn")
 var pause_node = null
 var pauseScreen = load("res://Scenes/pause_screen.tscn")
+var game_over_node = null
+var game_over_screen = load("res://Scenes/game_over.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
 var mainMenu = load("res://Scenes/title_screen.tscn")
 var player = load("res://Scenes/player.tscn")
@@ -126,13 +128,18 @@ func _input(event):
 			
 
 func game_over():
+	print("game over");
+	recursive_pause(self);
+	
 	if get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("MusicChase").stop()
 	if get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
 	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
-	print("game over");
+	
+	game_over_node = game_over_screen.instantiate()
+	add_child(game_over_node);
 
 var connections = {
 	horizontal_atlas: ["left","right"],
