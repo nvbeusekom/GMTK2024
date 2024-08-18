@@ -29,8 +29,8 @@ var blackExtend = 20
 var maxOffset = 20
 var bigBoyFirst = true
 
-var music_offset = 0;
-var sound_offset = 0;
+var music_volume = 100;
+var sound_volume = 100;
 
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
