@@ -76,7 +76,7 @@ func _on_food_touch(amount):
 	score += amount
 	get_tree().get_nodes_in_group("scoreLabel")[0].text = str(score)
 	if score >= threshold4:
-		SPEED = 90
+		SPEED = 150
 		$CollisionShape2D.scale = Vector2(9,9)
 		$AudioStreamPlayer2D.pitch_scale = 0.5
 		$Eating.pitch_scale = 0.75

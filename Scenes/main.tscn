@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1gpfj6t7ql4e"]
+[gd_scene load_steps=8 format=3 uid="uid://b1gpfj6t7ql4e"]
 
 [ext_resource type="Script" path="res://Scripts/level_gen.gd" id="1_tdqtp"]
 [ext_resource type="Texture2D" uid="uid://b4afta61bmtjl" path="res://icon.svg" id="1_wx2nf"]
 [ext_resource type="Texture2D" uid="uid://cf7d8rxmkai8y" path="res://Assets/Art/tileset.png" id="3_8ixmp"]
-[ext_resource type="PackedScene" uid="uid://dd321epjv74vk" path="res://Scenes/seeker.tscn" id="3_wllu7"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="6_jxj5p"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m3c5u"]
@@ -113,10 +112,6 @@ navigation_layers = 3
 position = Vector2(78, 35)
 tile_set = SubResource("TileSet_6fvoh")
 navigation_enabled = false
-
-[node name="Seeker" parent="." instance=ExtResource("3_wllu7")]
-position = Vector2(699, 459)
-rotation = 2.56389
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 visible = false
