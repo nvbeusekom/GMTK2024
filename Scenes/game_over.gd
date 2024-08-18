@@ -1,6 +1,6 @@
 extends Node2D
 
-var blackscreen_delta = 0.03;
+var blackscreen_delta = 0.04;
 var text_delta = 0.01
 var label_theme = null
 
@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 		$CanvasLayer/CenterContainer/Label.remove_theme_color_override("font_color");
 		$CanvasLayer/CenterContainer/Label.add_theme_color_override("font_color",color);
 	else:
+		get_tree().root.get_child(0).clear_game();
 		get_tree().root.get_child(0).open_main_menu();
 		self.queue_free();
 		
