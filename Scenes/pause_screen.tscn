@@ -31,6 +31,7 @@ offset_top = 452.0
 offset_right = 1124.0
 offset_bottom = 581.0
 theme = ExtResource("3_6g4r1")
+theme_override_fonts/font = ExtResource("1_rk3vk")
 theme_override_font_sizes/font_size = 72
 text = "Continue"
 
@@ -40,6 +41,7 @@ offset_top = 589.0
 offset_right = 1124.0
 offset_bottom = 718.0
 theme = ExtResource("3_6g4r1")
+theme_override_fonts/font = ExtResource("1_rk3vk")
 theme_override_font_sizes/font_size = 72
 text = "Restart"
 
@@ -49,6 +51,7 @@ offset_top = 742.0
 offset_right = 1124.0
 offset_bottom = 871.0
 theme = ExtResource("3_6g4r1")
+theme_override_fonts/font = ExtResource("1_rk3vk")
 theme_override_font_sizes/font_size = 72
 text = "Quit :("
 

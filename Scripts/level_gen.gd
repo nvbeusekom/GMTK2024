@@ -18,8 +18,10 @@ var pauseScreen = load("res://Scenes/pause_screen.tscn")
 var game_over_node = null
 var game_over_screen = load("res://Scenes/game_over.tscn")
 var destroySFX = load("res://Scenes/shelf_destroy_sfx.tscn")
+var mainMenu = load("res://Scenes/title_screen.tscn")
 var destroying_shelves = false;
 var blackExtend = 20
+var maxOffset = 20
 
 var source_id = 0;
 var horizontal_atlas = Vector2i(0,0);
@@ -60,10 +62,18 @@ var black_atlas = Vector2i(3,4);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var scene = mainMenu.instantiate()
+	add_child(scene)
+	$TitleScreen/CanvasLayer/newGameButton.pressed.connect(_game_start)
+	$TitleScreen/CanvasLayer/quitButton.pressed.connect(_exit)
+
+func _exit() -> void:
+	get_tree().quit()
+
+func _game_start() -> void:
+	$TitleScreen.queue_free()
 	generate();
 	bake_nav();
-	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(destroying_shelves):
@@ -329,25 +339,26 @@ func generate():
 	#Place food, cans, and seekers
 	var eligibleList = []
 	for cell in tile_map.get_used_cells_by_id(0,Vector2i(3,2)):
-		eligibleList.append(cell)
+		if (tile_map.map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].position).length() > 250:
+			eligibleList.append(cell)
 	if len(eligibleList) > numberOfFood + numberOfCans + numberOfSeekers:
 		for i in range(numberOfFood):
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = food.instantiate()
-			scene.position = tile_map.map_to_local(placeCell)
+			scene.position = Vector2(tile_map.map_to_local(placeCell).x + randf_range(-maxOffset,maxOffset),tile_map.map_to_local(placeCell).y + randf_range(-maxOffset,maxOffset))
 			add_child(scene)
 		for i in range(numberOfCans):
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = can.instantiate()
-			scene.position = tile_map.map_to_local(placeCell)
+			scene.position = Vector2(tile_map.map_to_local(placeCell).x + randf_range(-maxOffset,maxOffset),tile_map.map_to_local(placeCell).y + randf_range(-maxOffset,maxOffset))
 			add_child(scene)
 		for i in range(numberOfSeekers):
 			var placeCell = eligibleList.pick_random()
 			eligibleList.remove_at(eligibleList.find(placeCell,0))
 			var scene = seeker.instantiate()
-			scene.position = tile_map.map_to_local(placeCell)
+			scene.position = Vector2(tile_map.map_to_local(placeCell).x + randf_range(-maxOffset,maxOffset),tile_map.map_to_local(placeCell).y + randf_range(-maxOffset,maxOffset))
 			add_child(scene)
 	else:
 		print("Faulty generation, too few empty tiles")

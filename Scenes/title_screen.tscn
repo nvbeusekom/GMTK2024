@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://hduhrlu7gb6s"]
+
+[ext_resource type="Texture2D" uid="uid://gii520yy4lwa" path="res://Assets/Art/TitleScreen.png" id="1_t4c2n"]
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="2_ucbqs"]
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+texture = ExtResource("1_t4c2n")
+
+[node name="newGameButton" type="Button" parent="CanvasLayer"]
+offset_left = 60.0
+offset_top = 679.0
+offset_right = 510.0
+offset_bottom = 841.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("2_ucbqs")
+theme_override_font_sizes/font_size = 128
+text = "New Game
+"
+
+[node name="quitButton" type="Button" parent="CanvasLayer"]
+offset_left = 60.0
+offset_top = 870.0
+offset_right = 510.0
+offset_bottom = 1032.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("2_ucbqs")
+theme_override_font_sizes/font_size = 128
+text = "Quit
+"

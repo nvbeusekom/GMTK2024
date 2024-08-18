@@ -54,14 +54,17 @@ func _physics_process(delta):
 	var new_velocity: Vector2 = (next_path_position - current_agent_position).normalized() * movement_delta
 	look_at(next_path_position)
 	rotation = rotation-deg_to_rad(90)
-	if (global_position - targetPos).length() > 1:
-		if $NavigationAgent2D.avoidance_enabled:
-			$NavigationAgent2D.set_velocity(new_velocity)
-		else:
-			_on_velocity_computed(new_velocity)
+	if (global_position - next_path_position).length() < 10:
+		new_velocity = Vector2(0,0)
+	if $NavigationAgent2D.avoidance_enabled:
+		$NavigationAgent2D.set_velocity(new_velocity)
+	else:
+		_on_velocity_computed(new_velocity)
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
-	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
+	var new_global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
+	if (new_global_position - global_position).length() > 1:
+		global_position = new_global_position
 
 func _on_vision_cone_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -96,20 +99,21 @@ func _on_autopath_idle_timeout() -> void:
 	randomPath()
 
 func randomPath():
-	if !playerSeen and !soundHeard:
+	if !playerSeen and !soundHeard and !stillFollowing:
 		var eligibleList = []
 		var tpList = []
 		for cell in get_tree().get_nodes_in_group("navigation")[0].get_used_cells_by_id(0,Vector2i(3,2)):
-			if (get_tree().get_nodes_in_group("navigation")[0].map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].global_position).length() > 500:
+			if (get_tree().get_nodes_in_group("navigation")[0].map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].global_position).length() > 500 and (get_tree().get_nodes_in_group("navigation")[0].map_to_local(cell) - get_tree().get_nodes_in_group("player")[0].global_position).length() < 800:
 				tpList.append(cell)
 			eligibleList.append(cell)
-		if (get_tree().get_nodes_in_group("player")[0].global_position - global_position).length() > 500 and (get_tree().get_nodes_in_group("player")[0].global_position - global_position).length() < 800: # and rng.randf_range(0,10) > 5
+		if (get_tree().get_nodes_in_group("player")[0].global_position - global_position).length() > 800:# and (get_tree().get_nodes_in_group("player")[0].global_position - global_position).length() < 800: # and rng.randf_range(0,10) > 5
 			global_position = get_tree().get_nodes_in_group("navigation")[0].map_to_local(tpList.pick_random())
 			print("teleport")
 		targetPos = get_tree().get_nodes_in_group("navigation")[0].map_to_local(eligibleList.pick_random())
 			
 func _on_seen_wait_timeout() -> void:
 	vision_renderer.color = original_color
+	soundHeard = false
 	playerSeen = false
 	stillFollowing = false
 	movement_speed = 80
@@ -132,6 +136,7 @@ func _on_sound_wait_timeout() -> void:
 func _on_unreachable_wait_timeout() -> void:
 	soundHeard = false
 	playerSeen = false
+	stillFollowing = false
 	vision_renderer.color = original_color
 	randomPath()
 
