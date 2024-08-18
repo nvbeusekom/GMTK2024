@@ -2,10 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://gii520yy4lwa" path="res://Assets/Art/TitleScreen.png" id="1_t4c2n"]
 [ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="2_ucbqs"]
-
 [ext_resource type="AudioStream" uid="uid://b8nb5qfkqje8o" path="res://Assets/Sound&Music/notdetected.wav" id="3_p563w"]
 [ext_resource type="Texture2D" uid="uid://cavidf607s7dr" path="res://Assets/Art/help.png" id="3_qamrf"]
-
 
 [node name="TitleScreen" type="Node2D"]
 

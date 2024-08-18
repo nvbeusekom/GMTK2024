@@ -157,7 +157,6 @@ func big_boy_time():
 		bigBoyFirst = false
 
 func _input(event):
-
 	if Input.is_action_just_pressed("pause") && game_over_node == null && $TitleScreen == null:
 		if pause_node == null:
 			pause()
