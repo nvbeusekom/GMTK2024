@@ -91,7 +91,6 @@ texture_scale = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
 path_desired_distance = 10.0
-debug_enabled = true
 
 [node name="autopathIdle" type="Timer" parent="CharacterBody2D"]
 wait_time = 10.0
@@ -112,7 +111,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_s3kt3")
 animation = &"Walk"
-frame_progress = 0.765022
+frame_progress = 0.99943
 flip_v = true
 
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

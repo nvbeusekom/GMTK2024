@@ -221,8 +221,8 @@ var connections = {
 }
 
 var weights = {
-	horizontal_atlas: 5,
-	vertical_atlas: 5,
+	horizontal_atlas: 6,
+	vertical_atlas: 6,
 	left_down_atlas: 3,
 	left_up_atlas: 3,
 	right_up_atlas: 3,
@@ -236,13 +236,13 @@ var weights = {
 	up_atlas: 2,
 	right_atlas: 2,
 	down_atlas: 2,
-	horizontal_gap1_atlas: 3,
-	vertical_gap1_atlas: 3,
-	horizontal_gap2_atlas: 2,
-	vertical_gap2_atlas: 2,
-	horizontal_gap3_atlas: 1,
-	vertical_gap3_atlas: 1,
-	empty_atlas: 20
+	horizontal_gap1_atlas: 4,
+	vertical_gap1_atlas: 4,
+	horizontal_gap2_atlas: 3,
+	vertical_gap2_atlas: 3,
+	horizontal_gap3_atlas: 2,
+	vertical_gap3_atlas: 2,
+	empty_atlas: 30
 }
 
 func get_impossible_neighbours(contains,direction):
