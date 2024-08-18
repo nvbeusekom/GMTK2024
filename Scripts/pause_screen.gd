@@ -11,14 +11,13 @@ func _process(delta: float) -> void:
 func _on_continue_pressed() -> void:
 	get_tree().root.get_child(0).unpause();
 
+
+
 func _on_restart_pressed() -> void:
 	#var player = get_tree().get_nodes_in_group("player")[0]
 	#player.global_position = Vector2(45,45)
+	get_tree().root.get_child(0).clear_game();
 	
-	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
-	#player.score = 0
-	for node in get_tree().get_nodes_in_group("delete"):
-		node.queue_free()
 	#if player.get_node("MusicChase").playing:
 	#	player.get_node("MusicChase").stop()
 	#if !player.get_node("MusicSafe").playing:
@@ -27,4 +26,5 @@ func _on_restart_pressed() -> void:
 	#get_tree().get_nodes_in_group("player")[0].
 
 func _on_quit_pressed() -> void:
-	get_tree().quit();
+	get_tree().root.get_child(0).clear_game();
+	get_tree().root.get_child(0).open_main_menu();

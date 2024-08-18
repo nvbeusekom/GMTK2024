@@ -139,9 +139,17 @@ func game_over():
 		get_tree().get_nodes_in_group("player")[0].get_node("MusicSafe").stop()
 	if !get_tree().get_nodes_in_group("player")[0].get_node("GameOver").playing:
 		get_tree().get_nodes_in_group("player")[0].get_node("GameOver").play()
-	
+	clear_game();
 	game_over_node = game_over_screen.instantiate()
 	add_child(game_over_node);
+
+func clear_game():
+	get_tree().get_nodes_in_group("camera")[0].global_position = Vector2(45,45)
+	#player.score = 0
+	for node in get_tree().get_nodes_in_group("seeker"):
+		node.queue_free()
+	for node in get_tree().get_nodes_in_group("delete"):
+		node.queue_free()
 
 var connections = {
 	horizontal_atlas: ["left","right"],
