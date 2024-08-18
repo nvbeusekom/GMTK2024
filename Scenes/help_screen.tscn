@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://boong44o4sase"]
+
+[ext_resource type="Script" path="res://Scripts/help_screen.gd" id="1_xlrqh"]
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://Assets/Fonts/SHPinscher-Regular.otf" id="2_1315h"]
+[ext_resource type="Texture2D" uid="uid://comgelcg011af" path="res://Assets/Art/wasd.png" id="3_5n365"]
+[ext_resource type="Texture2D" uid="uid://b0amtceommvkj" path="res://Assets/Art/enter.png" id="4_an34k"]
+[ext_resource type="Texture2D" uid="uid://dglv3bhbsqb7t" path="res://Assets/Art/esc.png" id="5_qx5wc"]
+
+[node name="HelpScreen" type="Node2D"]
+script = ExtResource("1_xlrqh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 240.0
+offset_top = 135.0
+offset_right = 1680.0
+offset_bottom = 945.0
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 334.0
+offset_top = 184.0
+offset_right = 892.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 112
+text = "How To Play?"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 1000.0
+offset_top = 184.0
+offset_right = 1448.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 112
+text = "What To Do?"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 500.0
+offset_top = 403.0
+offset_right = 814.0
+offset_bottom = 491.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 64
+text = "Walk around!"
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 500.0
+offset_top = 576.0
+offset_right = 844.0
+offset_bottom = 664.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 63
+text = "Make a noise!"
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_left = 500.0
+offset_top = 730.0
+offset_right = 834.0
+offset_bottom = 818.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 64
+text = "Take a break!"
+
+[node name="Label6" type="Label" parent="CanvasLayer"]
+offset_left = 1000.0
+offset_top = 402.0
+offset_right = 1378.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 64
+text = "Eat the pizzas!"
+
+[node name="Label7" type="Label" parent="CanvasLayer"]
+offset_left = 1000.0
+offset_top = 530.0
+offset_right = 1643.0
+offset_bottom = 709.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 64
+text = "Watch out for the guards!
+(They can hear you!)"
+
+[node name="Label8" type="Label" parent="CanvasLayer"]
+offset_left = 1000.0
+offset_top = 735.0
+offset_right = 1661.0
+offset_bottom = 823.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 64
+text = "Don't knock over the cans!"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(369, 446)
+scale = Vector2(4, 4)
+texture = ExtResource("3_5n365")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(365, 623)
+scale = Vector2(4, 4)
+texture = ExtResource("4_an34k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(369, 775)
+scale = Vector2(4, 4)
+texture = ExtResource("5_qx5wc")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 821.0
+offset_top = 836.0
+offset_right = 992.0
+offset_bottom = 932.0
+theme_override_fonts/font = ExtResource("2_1315h")
+theme_override_font_sizes/font_size = 64
+text = "Got it!"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
